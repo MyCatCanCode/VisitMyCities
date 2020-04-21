@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitMyCities", "VisitMyCities\VisitMyCities.csproj", "{B8DF7C1C-031A-4DAC-B321-CE48026EF820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitMyCities.DataModel", "VisitMyCities.DataModel\VisitMyCities.DataModel.csproj", "{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8DF7C1C-031A-4DAC-B321-CE48026EF820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DF7C1C-031A-4DAC-B321-CE48026EF820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DF7C1C-031A-4DAC-B321-CE48026EF820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DF7C1C-031A-4DAC-B321-CE48026EF820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0069C74-7980-4F95-A83E-857B58B260F9}
+	EndGlobalSection
+EndGlobal
