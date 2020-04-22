@@ -1,0 +1,83 @@
+﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Batiment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomBatiment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URLPhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeBatiment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescriptionBatiment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonumentHistorique)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateConstruction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ville)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomBatiment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.URLPhoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeBatiment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionBatiment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonumentHistorique)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateConstruction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville.NomVille)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BatimentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BatimentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

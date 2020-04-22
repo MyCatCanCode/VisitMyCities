@@ -8,7 +8,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
     public class Batiment
     {
         [Key]
-        public int IdBatiment { get; set; }
+        public int BatimentId { get; set; }
         [Required]
         public string NomBatiment { get; set; }
         public string URLPhoto { get; set; }
@@ -21,7 +21,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public DateTime DateConstruction { get; set; }
         // propriétés de navigation
         public ICollection<DetailArchitectural> Details { get; set; }
-        public int IdVille { get; set; }
+        public int VilleId { get; set; }
         public Ville Ville { get; set; }
     }
 }

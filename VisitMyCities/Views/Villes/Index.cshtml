@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Ville>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomVille)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomRegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumDepartement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomDepartement)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomVille)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomRegion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumDepartement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomDepartement)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VilleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VilleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VilleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

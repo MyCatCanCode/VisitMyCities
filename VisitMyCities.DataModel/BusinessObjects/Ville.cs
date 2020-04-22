@@ -8,7 +8,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
     public class Ville
     {
         [Key]
-        public int IdVille { get; set; }
+        public int VilleId { get; set; }
         [Required]
         public string NomVille { get; set; }
         public string NomRegion { get; set; }
