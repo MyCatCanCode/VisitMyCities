@@ -5,6 +5,8 @@ using System.Text;
 
 namespace VisitMyCities.DataModel.BusinessObjects
 {
+
+    //Modification de test
     public class Batiment
     {
         [Key]
