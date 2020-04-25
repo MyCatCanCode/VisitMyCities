@@ -11,6 +11,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public int BatimentId { get; set; }
         [Required]
         public string NomBatiment { get; set; }
+        public string Adresse { get; set; }
         public string URLPhoto { get; set; }
         [Required]
         public string TypeBatiment { get; set; }
