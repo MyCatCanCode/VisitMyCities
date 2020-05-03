@@ -1,83 +1,120 @@
 ﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Batiment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>VisitMyCity</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="masthead">
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <a asp-action="Create">Create New</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NomBatiment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.URLPhoto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TypeBatiment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DescriptionBatiment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Longitude)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Latitude)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MonumentHistorique)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateConstruction)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ville)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+    </header>
+    
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomBatiment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.URLPhoto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeBatiment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DescriptionBatiment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonumentHistorique)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateConstruction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ville.NomVille)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.BatimentId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.BatimentId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomBatiment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.URLPhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeBatiment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescriptionBatiment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MonumentHistorique)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateConstruction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ville)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomBatiment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URLPhoto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeBatiment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescriptionBatiment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonumentHistorique)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateConstruction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ville.NomVille)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BatimentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BatimentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/site.js"></script>
+</body>
