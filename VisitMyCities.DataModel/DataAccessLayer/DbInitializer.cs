@@ -24,22 +24,22 @@ namespace VisitMyCities.DataModel.DataAccessLayer
             {
             new Batiment{NomBatiment = "Eglise protestante Saint-Pierre-le-Jeune", Adresse = "Place Saint-Pierre-le-Jeune, 67000 Strasbourg", URLPhoto = "", TypeBatiment = "Eglise", 
                 DescriptionBatiment = "Trois églises ont été construites successivement au même endroit. Au début du Moyen-Âge, une petite église, dédiée à Saint Colomban - ou Sainte Colombe ? -, dont il subsiste sous le bas-côté extérieur Sud un caveau. En 1031 fut commencée la construction d’une église romane, pour un chapître de chanoines. Il en reste le cloître et les étages inférieurs du clocher.", 
-                Longitude = 7.746713, Latitude = 48.585132, MonumentHistorique = true, DateConstruction = DateTime.Parse("1031-01-01"), VilleId=0},
+                Longitude = 7.746713, Latitude = 48.585132, MonumentHistorique = true, DateConstruction = ("1031-01-01"), VilleId=0},
             new Batiment{NomBatiment = "Cathédrale Notre Dame", Adresse = "Place de la Cathédrale, 67000 Strasbourg", URLPhoto = "", TypeBatiment = "Cathédrale", 
                 DescriptionBatiment = "De votre premier aperçu de la magnifique structure de pâtés de maisons à une vue époustouflante lorsque vous entrez sur la place qui entoure ce gigantesque monument gothique presque étrange, il est vraiment impressionnant !", 
-                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = DateTime.Parse("1015-01-01"), VilleId=0},
+                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = ("1015-01-01"), VilleId=0},
             new Batiment{NomBatiment = "Palais du Rhin", Adresse = "1 Place de la République, 67000 Strasbourg", URLPhoto = "", TypeBatiment = "Palais", 
                 DescriptionBatiment = "Le palais du Rhin, ancien palais impérial, se situe à Strasbourg, dans la Neustadt, sur la place de la République qu’il domine de son imposante coupole. Avec le grand jardin qui l’entoure et les anciennes écuries situées derrière le bâtiment, il forme l’un des ensembles les plus complets et les plus emblématiques de l'architecture allemande de la fin du XIXᵉ siècle.", 
-                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = DateTime.Parse("1883-01-01"), VilleId=0},
+                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = ("1883-01-01"), VilleId=0},
             new Batiment{NomBatiment = "Le Pont de l'Europe", Adresse = "", URLPhoto = "", TypeBatiment = "Pont", 
                 DescriptionBatiment = "Le pont de l'Europe de Strasbourg - Kehl est un pont routier frontalier entre l'Allemagne et la France au-dessus du Rhin", 
-                Longitude = 0, Latitude = 0, MonumentHistorique = false, DateConstruction = DateTime.Parse("2005-09-01"), VilleId=0},
+                Longitude = 0, Latitude = 0, MonumentHistorique = false, DateConstruction = ("2005-09-01"), VilleId=0},
             new Batiment{NomBatiment = "Église Catholique Saint-Pierre-le-Vieux de Strasbourg", Adresse= "Place Saint-Pierre-le-Vieux, 67000 Strasbourg", URLPhoto = "", TypeBatiment = "Eglise", 
                 DescriptionBatiment = "L'église Saint-Pierre-le-Vieux de Strasbourg se situe place Saint-Pierre-le-Vieux, au bout de la rue du 22-Novembre et de la Grand'rue dans le centre historique de la ville. La partie de l'église côté rue du 22-Novembre est affectée au culte catholique tandis que la partie donnant sur la Grand'rue est affectée au culte protestant.", 
-                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = DateTime.Parse("2005-09-01"), VilleId=0},
+                Longitude = 0, Latitude = 0, MonumentHistorique = true, DateConstruction = ("2005-09-01"), VilleId=0},
             new Batiment{NomBatiment = "Musée Zoologique de Strasbourg", Adresse ="29 Boulevard de la Victoire, 67000 Strasbourg", URLPhoto = "", TypeBatiment = "Musée", 
                 DescriptionBatiment = "Le musée zoologique de la ville de Strasbourg présente des collections de zoologie appartenant à la ville de Strasbourg et gérées par l'université de Strasbourg. Il est situé boulevard de la Victoire à proximité du campus historiquehd                                                          ", 
-                Longitude = 0, Latitude = 0, MonumentHistorique = false, DateConstruction = DateTime.Parse("1804-01-01"), VilleId=0},
+                Longitude = 0, Latitude = 0, MonumentHistorique = false, DateConstruction = ("1804-01-01"), VilleId=0},
 
             };
             foreach (Batiment b in batiments)
