@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
+using VisitMyCities.Models.DTOs;
 
 namespace VisitMyCities.Controllers.API
 {
@@ -14,97 +15,59 @@ namespace VisitMyCities.Controllers.API
     [ApiController]
     public class BatimentsController : ControllerBase
     {
-        private readonly VisitMyCitiesContext _context;
-
-        public BatimentsController(VisitMyCitiesContext context)
+        IRepository _repos;
+        public BatimentsController(IRepository repos)
         {
-            _context = context;
+            _repos = repos;
         }
 
         // GET: api/Batiments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Batiment>>> GetBatiments()
+        public IEnumerable<BatimentDTO> Get()
         {
-            return await _context.Batiments.ToListAsync();
+            var batiments = _repos.GetAll<Batiment>();
+            return batiments.Select(b => new BatimentDTO(b));
         }
 
         // GET: api/Batiments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Batiment>> GetBatiment(int id)
+        public BatimentDTO Get(int id)
         {
-            var batiment = await _context.Batiments.FindAsync(id);
-
-            if (batiment == null)
-            {
-                return NotFound();
-            }
-
-            return batiment;
+            Batiment batiment = _repos.GetById<Batiment>(id);
+            return new BatimentDTO(batiment);
         }
 
         // PUT: api/Batiments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBatiment(int id, Batiment batiment)
+        public void Put(BatimentDTO dto)
         {
-            if (id != batiment.BatimentId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(batiment).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BatimentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            Batiment bat = (Batiment)dto;
+            _repos.Update(bat);
         }
 
         // POST: api/Batiments
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Batiment>> PostBatiment(Batiment batiment)
+        public void Post(BatimentDTO dto)
         {
-            _context.Batiments.Add(batiment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBatiment", new { id = batiment.BatimentId }, batiment);
+            Batiment bat = (Batiment)dto;
+            _repos.Insert(bat);
         }
 
         // DELETE: api/Batiments/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Batiment>> DeleteBatiment(int id)
+        public void Delete(BatimentDTO dto)
         {
-            var batiment = await _context.Batiments.FindAsync(id);
-            if (batiment == null)
-            {
-                return NotFound();
-            }
-
-            _context.Batiments.Remove(batiment);
-            await _context.SaveChangesAsync();
-
-            return batiment;
+            Batiment bat = (Batiment)dto;
+            _repos.Delete((Batiment)bat);
         }
 
-        private bool BatimentExists(int id)
-        {
-            return _context.Batiments.Any(e => e.BatimentId == id);
-        }
+        //private bool BatimentExists(int id)
+        //{
+        //    return _context.Batiments.Any(e => e.BatimentId == id);
+        //}
     }
 }

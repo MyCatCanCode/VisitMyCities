@@ -55,26 +55,26 @@ namespace VisitMyCities.Models.DTOs
             get { return model.DescriptionBatiment; }
             set { model.DescriptionBatiment = value; }
         }
-        public double Longitude
+        public double? Longitude
         {
-            get { return model.Longitude; }
+            get => model.Longitude;
             set { model.Longitude = value; }
         }
-        public double Latitude
+        public double? Latitude
         {
-            get { return model.Latitude; }
+            get => model.Latitude;
             set { model.Latitude = value; }
         }
-        public bool MonumentHistorique
+        public bool? MonumentHistorique
         {
-            get { return model.MonumentHistorique; }
+            get => model.MonumentHistorique;
             set { model.MonumentHistorique = value; }
         }
-        public DateTime DateConstruction
+        public string DateConstruction
         {
-            get { return model.DateConstruction; }
-            set { model.DateConstruction = value; }
-        }      
+            get => model.DateConstruction;
+            set => model.DateConstruction = value;
+        }
 
     }
 }

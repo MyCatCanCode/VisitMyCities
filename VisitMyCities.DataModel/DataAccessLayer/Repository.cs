@@ -6,34 +6,36 @@ namespace VisitMyCities.DataModel.DataAccessLayer
 {
     public class Repository : IRepository
     {
+        VisitMyCitiesContext _dbctx;
+        public Repository(VisitMyCitiesContext dbctx)
+        {
+            _dbctx = dbctx;
+        }
         public void Delete<T>(T resa) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public List<T> GetAll<T>() where T : class
+        public IEnumerable<T> GetAll<T>() where T : class
         {
-            throw new NotImplementedException();
+            return _dbctx.Set<T>();
         }
 
         public T GetById<T>(int id) where T : class
         {
-            throw new NotImplementedException();
+            return _dbctx.Find<T>(id);
         }
 
-        public void Insert<T>(T resa) where T : class
+        public void Insert<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _dbctx.Set<T>().Add(entity);
+            _dbctx.SaveChanges();
         }
 
-        public void InsertAsync<T>(T resa) where T : class
+        public void Update<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update<T>(T resa) where T : class
-        {
-            throw new NotImplementedException();
+            _dbctx.Set<T>().Update(entity);
+            _dbctx.SaveChanges();
         }
     }
 }

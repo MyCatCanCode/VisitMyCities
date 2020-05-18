@@ -24,6 +24,7 @@ namespace VisitMyCities
 
             services.AddDbContext<VisitMyCitiesContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

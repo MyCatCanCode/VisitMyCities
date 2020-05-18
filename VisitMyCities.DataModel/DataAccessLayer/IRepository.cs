@@ -7,10 +7,9 @@ namespace VisitMyCities.DataModel.DataAccessLayer
     public interface IRepository
     {
         void Delete<T>(T resa) where T : class;
-        List<T> GetAll<T>() where T : class;
+        IEnumerable<T> GetAll<T>() where T : class;
         T GetById<T>(int id) where T : class;
         void Insert<T>(T resa) where T : class;
-        void InsertAsync<T>(T resa) where T : class;
         void Update<T>(T resa) where T : class;
     }
 }
