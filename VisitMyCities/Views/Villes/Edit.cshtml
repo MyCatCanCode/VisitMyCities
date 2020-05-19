@@ -4,45 +4,70 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>VisitMyCity</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="masthead">
+        <div class="card card-outline-secondary">
+            <div class="card-header">
+                <h3 class="mb-0">etes-vous sûr de vouloir modifier les informations de cette ville ?</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="VilleId" />
+                            <div class="form-group">
+                                <label asp-for="NomVille" class="control-label"></label>
+                                <input asp-for="NomVille" class="form-control" />
+                                <span asp-validation-for="NomVille" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NomRegion" class="control-label"></label>
+                                <input asp-for="NomRegion" class="form-control" />
+                                <span asp-validation-for="NomRegion" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NumDepartement" class="control-label"></label>
+                                <input asp-for="NumDepartement" class="form-control" />
+                                <span asp-validation-for="NumDepartement" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NomDepartement" class="control-label"></label>
+                                <input asp-for="NomDepartement" class="form-control" />
+                                <span asp-validation-for="NomDepartement" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </header>
+</body>
 
-<h4>Ville</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="VilleId" />
-            <div class="form-group">
-                <label asp-for="NomVille" class="control-label"></label>
-                <input asp-for="NomVille" class="form-control" />
-                <span asp-validation-for="NomVille" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NomRegion" class="control-label"></label>
-                <input asp-for="NomRegion" class="form-control" />
-                <span asp-validation-for="NomRegion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumDepartement" class="control-label"></label>
-                <input asp-for="NumDepartement" class="form-control" />
-                <span asp-validation-for="NumDepartement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NomDepartement" class="control-label"></label>
-                <input asp-for="NomDepartement" class="form-control" />
-                <span asp-validation-for="NomDepartement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

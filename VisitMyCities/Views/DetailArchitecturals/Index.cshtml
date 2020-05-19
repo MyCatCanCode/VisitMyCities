@@ -4,44 +4,72 @@
     ViewData["Title"] = "";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomDetail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescriptionDetail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Batiment)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescriptionDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Batiment.NomBatiment)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DetailId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DetailId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DetailId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>VisitMyCity</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="masthead">
+        <div class="card card-outline-secondary">
+            <div class="card-header">
+                <h3 class="mb-0">Trop beau l'architecture !!!</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create">Ajouter un détail à cette architecture</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NomDetail)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DescriptionDetail)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Batiment)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomDetail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DescriptionDetail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Batiment.NomBatiment)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.DetailId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.DetailId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.DetailId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </header>
+</body>
