@@ -33,49 +33,52 @@
                             <form asp-action="Create">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
-                                    <label asp-for="NomBatiment" class="control-label"></label>
+                                    <label class="control-label">Nom du bâtiment</label>
                                     <input asp-for="NomBatiment" class="form-control" />
                                     <span asp-validation-for="NomBatiment" class="text-danger"></span>
                                 </div>
+                                
                                 <div class="form-group">
-                                    <label asp-for="URLPhoto" class="control-label"></label>
+                                    <label class="control-label">Ville</label>
+                                    <select asp-for="VilleId" class="form-control" asp-items="ViewBag.VilleId"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Ajouter un lien photo</label>
                                     <input asp-for="URLPhoto" class="form-control" />
                                     <span asp-validation-for="URLPhoto" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="TypeBatiment" class="control-label"></label>
+                                    <label class="control-label">Type de bâtiment</label>
                                     <input asp-for="TypeBatiment" class="form-control" />
                                     <span asp-validation-for="TypeBatiment" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="DescriptionBatiment" class="control-label"></label>
+                                    <label class="control-label">Description du bâtiment</label>
                                     <input asp-for="DescriptionBatiment" class="form-control" />
                                     <span asp-validation-for="DescriptionBatiment" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Longitude" class="control-label"></label>
+                                    <label class="control-label">Position GPS en Longitude:</label>
                                     <input asp-for="Longitude" class="form-control" />
                                     <span asp-validation-for="Longitude" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Latitude" class="control-label"></label>
+                                    <label class="control-label">Position GPS en Latitude:</label>
                                     <input asp-for="Latitude" class="form-control" />
                                     <span asp-validation-for="Latitude" class="text-danger"></span>
                                 </div>
                                 <div class="form-group form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" asp-for="MonumentHistorique" /> @Html.DisplayNameFor(model => model.MonumentHistorique)
+                                        <input class="form-check-input" asp-for="MonumentHistorique" />
+                                        @Html.DisplayNameFor(model => model.MonumentHistorique)
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="DateConstruction" class="control-label"></label>
+                                    <label class="control-label">Date de Construction</label>
                                     <input asp-for="DateConstruction" class="form-control" />
                                     <span asp-validation-for="DateConstruction" class="text-danger"></span>
                                 </div>
-                                <div class="form-group">
-                                    <label asp-for="VilleId" class="control-label"></label>
-                                    <select asp-for="VilleId" class="form-control" asp-items="ViewBag.VilleId"></select>
-                                </div>
+                                
                                 <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-primary" />
                                 </div>
