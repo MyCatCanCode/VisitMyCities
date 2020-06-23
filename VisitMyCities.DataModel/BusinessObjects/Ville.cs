@@ -14,6 +14,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public string NomRegion { get; set; }
         public int NumDepartement { get; set; }
         public string NomDepartement { get; set; }
+        public string NomMaire { get; set; }
         // Propriété de navigation
         public ICollection<Batiment> Batiments { get; set; }
     }

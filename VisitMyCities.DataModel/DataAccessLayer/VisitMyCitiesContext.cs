@@ -10,6 +10,7 @@ namespace VisitMyCities.DataModel.DataAccessLayer
     {
         public VisitMyCitiesContext(DbContextOptions<VisitMyCitiesContext> options) : base(options)
         {
+
         }
 
         public DbSet<Batiment> Batiments { get; set; }

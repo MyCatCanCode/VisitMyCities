@@ -40,7 +40,7 @@ namespace VisitMyCities.Controllers.API
         // PUT: api/Batiments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put(BatimentDTO dto)
         {
             Batiment bat = (Batiment)dto;
@@ -58,7 +58,7 @@ namespace VisitMyCities.Controllers.API
         }
 
         // DELETE: api/Batiments/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public void Delete(BatimentDTO dto)
         {
             Batiment bat = (Batiment)dto;
