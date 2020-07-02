@@ -10,7 +10,7 @@ using VisitMyCities.DataModel.DataAccessLayer;
 
 namespace VisitMyCities.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class VillesController : ControllerBase
     {
@@ -39,7 +39,43 @@ namespace VisitMyCities.Controllers.API
                 return NotFound();
             }
 
+
+
             return ville;
+        }
+
+        // GET: api/Villes/BatimentsParVille/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<Batiment>>> BatimentsParVille(int id)
+        {
+            var villeRecherchee = await _context.Villes.FindAsync(id);
+
+            if (villeRecherchee == null)
+            {
+                return NotFound();
+            }
+
+            var villes = _context.Villes;
+            var batiments = _context.Batiments;
+            var ListeBatimentsParVille = new List<Batiment>();
+
+            var query = from ville in villes
+                        join batiment in batiments on ville.VilleId equals batiment.VilleId
+                        where ville.VilleId == villeRecherchee.VilleId
+                        select new Batiment { NomBatiment = batiment.NomBatiment,
+                            TypeBatiment = batiment.TypeBatiment,
+                            DescriptionBatiment = batiment.DescriptionBatiment };
+
+
+            foreach (var batiment in query)
+            {
+                Console.WriteLine(batiment);
+                ListeBatimentsParVille.Add(batiment);
+                    
+            }
+
+
+            return ListeBatimentsParVille;
         }
 
         // PUT: api/Villes/5
