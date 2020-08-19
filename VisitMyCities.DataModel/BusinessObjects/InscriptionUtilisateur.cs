@@ -6,22 +6,19 @@ using System.Text;
 namespace VisitMyCities.DataModel.BusinessObjects
 {
      public class InscriptionUtilisateur
-    {
-        public class UserRegistrationModel
-        {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            [Required(ErrorMessage = "Email is required")]
+     {       
+            public string Nom { get; set; }
+            public string Prenom { get; set; }
+            [Required(ErrorMessage = "L'adresse mail est obligatiore !")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Password is required")]
+            [Required(ErrorMessage = "Le mot de passe est obligatoire !")]
             [DataType(DataType.Password)]
-            public string Password { get; set; }
+            public string MotDePasse { get; set; }
 
             [DataType(DataType.Password)]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-        }
-    }
+            [Compare("MotDePasse", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]
+            public string ConfirmationMotDePasse { get; set; }       
+     }
 }

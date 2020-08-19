@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace VisitMyCities.DataModel.BusinessObjects
 {
-    public class Utilisateur
+    public class Utilisateur : IdentityUser
     {
+        public string NomUtilisateur { get; set; }
+
+        public string PrenomUtilisateur { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -16,6 +20,8 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public string Password { get; set; }
 
         [Display(Name = "Se souvenir de moi ?")]
-        public bool RememberMe { get; set; }
+        public bool SeSouvenir { get; set; }
+
+        public ICollection<ListeDeVoyage> ListesDeVoyage { get; set; }
     }
 }

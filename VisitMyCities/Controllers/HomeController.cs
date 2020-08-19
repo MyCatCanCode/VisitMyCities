@@ -21,17 +21,17 @@ namespace VisitMyCities.Controllers
 
         public IActionResult Index()
         {
-            List<Record> monuments = new List<Record>();
+            //List<Record> monuments = new List<Record>();
 
-            try
-            {
-                GouvApi.DeserializeJson();
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    GouvApi.DeserializeJson();
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
 
             return View();
         }
