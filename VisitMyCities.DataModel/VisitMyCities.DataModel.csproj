@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200820143430_ListeDeVoyage.cs" />
+    <Compile Remove="Migrations\20200820143430_ListeDeVoyage.Designer.cs" />
+    <Compile Remove="Migrations\20200820152943_ListeDeVoyage.cs" />
+    <Compile Remove="Migrations\20200820152943_ListeDeVoyage.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />

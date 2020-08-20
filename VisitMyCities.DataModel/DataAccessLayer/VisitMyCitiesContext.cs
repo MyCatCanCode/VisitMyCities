@@ -24,6 +24,7 @@ namespace VisitMyCities.DataModel.DataAccessLayer
             modelBuilder.Entity<Batiment>().ToTable("Batiment");
             modelBuilder.Entity<DetailArchitectural>().ToTable("DetailArchitectural");
             modelBuilder.Entity<Ville>().ToTable("Ville");
+            modelBuilder.Entity<ListeDeVoyage>().ToTable("ListeDeVoyage");
         }
     }
 }
