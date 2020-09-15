@@ -4810,6 +4810,15 @@ input[type=button].btn-block {
     border-bottom-left-radius: calc(0.25rem - 1px);
 }
 
+.card-img-blason {
+    width: 150px !important;
+}
+
+.card-listevoyage {
+    width: 400px;
+    text-align: center;
+}
+
 .card-deck .card {
     margin-bottom: 15px;
 }
@@ -10739,3 +10748,4 @@ header.masthead {
 .text-white-75 {
     color: rgba(255, 255, 255, 0.75);
 }
+

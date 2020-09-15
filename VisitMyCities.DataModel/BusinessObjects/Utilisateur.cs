@@ -13,7 +13,7 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public string PrenomUtilisateur { get; set; }
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public override string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

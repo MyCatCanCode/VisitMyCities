@@ -18,6 +18,8 @@ namespace VisitMyCities.DataModel.DataAccessLayer
         public DbSet<DetailArchitectural> DetailsArchi { get; set; }
         public DbSet<Ville> Villes { get; set; }
 
+        public DbSet<ListeDeVoyage> ListesDeVoyage { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

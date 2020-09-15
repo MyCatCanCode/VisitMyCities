@@ -10,7 +10,9 @@ namespace VisitMyCities.DataModel.BusinessObjects
         [Key]
         public int IdListe { get; set; }
         public string TitreListe { get; set; }
+        public int VilleId { get; set; }
         public Ville Ville { get; set; }
+        public string URLBlason { get; set; }
         public ICollection<Batiment> Batiments { get; set; }
         public Utilisateur Utilisateur { get; set; }
     }

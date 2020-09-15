@@ -107,7 +107,7 @@ namespace VisitMyCities.Controllers
         // Permet d’afficher une vue indiquant la réussite de l’authentification.    
         public IActionResult AccessAllowed()
         {
-            return this.View();
+            return RedirectToAction("Index","Home");
         }
     }
 }

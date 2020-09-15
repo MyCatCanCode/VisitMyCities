@@ -27,5 +27,6 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public ICollection<DetailArchitectural> Details { get; set; }
         public int VilleId { get; set; }
         public Ville Ville { get; set; }
+        //public ICollection<ListeDeVoyage> ListesDeVoyages { get; set; }
     }
 }
