@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200820152943_ListeDeVoyage.Designer.cs" />
     <Compile Remove="Migrations\20200908140427_AjouterBlason.cs" />
     <Compile Remove="Migrations\20200908140427_AjouterBlason.Designer.cs" />
+    <Compile Remove="Migrations\20200929153240_BatimentListedeVoyage.cs" />
+    <Compile Remove="Migrations\20200929153240_BatimentListedeVoyage.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

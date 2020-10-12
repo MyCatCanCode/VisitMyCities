@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
+using VisitMyCities.Models;
 
 namespace VisitMyCities.Controllers
 {
@@ -35,15 +36,26 @@ namespace VisitMyCities.Controllers
             {
                 return NotFound();
             }
-
-            var listeDeVoyage = await _context.ListesDeVoyage
+            var listeDetails = new ListeVoyageViewModel();
+            listeDetails.ListeDeVoyage = await _context.ListesDeVoyage
                 .FirstOrDefaultAsync(m => m.IdListe == id);
-            if (listeDeVoyage == null)
+            if (listeDetails.ListeDeVoyage == null)
             {
                 return NotFound();
             }
 
-            return View(listeDeVoyage);
+            var batiments =
+                from liste in _context.ListesDeVoyage
+                join batlist in _context.BatimentsListesDeVoyage on liste.IdListe equals batlist.IdListe
+                join batiment in _context.Batiments on batlist.BatimentId equals batiment.BatimentId
+                select new Batiment { 
+                    NomBatiment = batiment.NomBatiment,
+                    Adresse = batiment.Adresse,
+                    URLPhoto = batiment.URLPhoto
+                };
+
+            listeDetails.Batiments = batiments.ToList();
+            return View(listeDetails);
         }
 
         // GET: ListeDeVoyages/Create

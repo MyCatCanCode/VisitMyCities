@@ -1,24 +1,84 @@
-﻿@model VisitMyCities.DataModel.BusinessObjects.ListeDeVoyage
+﻿@model VisitMyCities.Models.ListeVoyageViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>VisitMyCity</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
 
-<h1>Details</h1>
+    <h1>Details</h1>
 
-<div>
-    <h4>ListeDeVoyage</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TitreListe)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TitreListe)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.IdListe">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <p>
+            <img src="~/assets/img/button-304224_640.png" style="width:50px" />
+            <a asp-action="Create">Ajouter une liste</a>
+        </p>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ListeDeVoyage.TitreListe)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ListeDeVoyage.TitreListe)
+            </dd>
+        </dl>
+        <button type="submit" class="btn-success">Ajouter un bâtiment</button>
+
+        <div class="card-deck">
+
+            @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in Model.Batiments)
+            {
+                <div style="width:300px; text-align:center; border: 1px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">@item.NomBatiment</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title"></div>
+                            <img src="~/@item.URLPhoto" style="width:150px" />
+
+                        </div>
+                        <div class="card-footer">
+                            @*<div class="card-title">@item.Ville.NomVille</div>*@
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ListeDeVoyage.IdListe">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    <p>
+        <img src="~/assets/img/button-304224_640.png" style="width:50px" />
+        <a asp-action="Create">Ajouter une liste</a>
+    </p>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/site.js"></script>
+</body>

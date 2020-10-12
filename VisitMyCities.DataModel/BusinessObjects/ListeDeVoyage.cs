@@ -13,7 +13,9 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public int VilleId { get; set; }
         public Ville Ville { get; set; }
         public string URLBlason { get; set; }
-        public ICollection<Batiment> Batiments { get; set; }
+        public ICollection<BatimentListeDeVoyage> BatimentsListeDeVoyage { get; set; }
         public Utilisateur Utilisateur { get; set; }
+
+        
     }
 }

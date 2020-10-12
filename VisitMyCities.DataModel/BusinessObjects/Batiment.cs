@@ -10,13 +10,14 @@ namespace VisitMyCities.DataModel.BusinessObjects
     //Modification 2
     public class Batiment
     {
+
         [Key]
         public int BatimentId { get; set; }
-        
+
         public string NomBatiment { get; set; }
         public string Adresse { get; set; }
         public string URLPhoto { get; set; }
-     
+
         public string TypeBatiment { get; set; }
         public string DescriptionBatiment { get; set; }
         public double? Longitude { get; set; }
@@ -27,6 +28,9 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public ICollection<DetailArchitectural> Details { get; set; }
         public int VilleId { get; set; }
         public Ville Ville { get; set; }
-        //public ICollection<ListeDeVoyage> ListesDeVoyages { get; set; }
+        public ICollection<BatimentListeDeVoyage> BatimentsListeDeVoyage { get; set; }
+
+        
+
     }
 }

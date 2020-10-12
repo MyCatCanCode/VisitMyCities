@@ -19,6 +19,7 @@ namespace VisitMyCities.DataModel.DataAccessLayer
         public DbSet<Ville> Villes { get; set; }
 
         public DbSet<ListeDeVoyage> ListesDeVoyage { get; set; }
+        public DbSet<BatimentListeDeVoyage> BatimentsListesDeVoyage { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,23 @@ namespace VisitMyCities.DataModel.DataAccessLayer
             modelBuilder.Entity<DetailArchitectural>().ToTable("DetailArchitectural");
             modelBuilder.Entity<Ville>().ToTable("Ville");
             modelBuilder.Entity<ListeDeVoyage>().ToTable("ListeDeVoyage");
+            modelBuilder.Entity<BatimentListeDeVoyage>().ToTable("BatimentListeDeVoyage");
+
+            modelBuilder.Entity<BatimentListeDeVoyage>()
+            .HasKey(o => new { o.BatimentId, o.IdListe });
+
+            modelBuilder.Entity<BatimentListeDeVoyage>()
+            .HasOne(bl => bl.Batiment)
+            .WithMany(b => b.BatimentsListeDeVoyage)
+            .HasForeignKey(bl => bl.BatimentId);
+
+
+            modelBuilder.Entity<BatimentListeDeVoyage>()
+                .HasOne(bl => bl.ListeDeVoyage)
+                .WithMany(l => l.BatimentsListeDeVoyage)
+                .HasForeignKey(bl => bl.IdListe)
+                .OnDelete(DeleteBehavior.NoAction);
+            
         }
     }
 }
