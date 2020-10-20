@@ -3,28 +3,58 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Connexion</title>
+    
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>VisitMyCity</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="~/css/site.css" rel="stylesheet" />
+    
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/Account/Login" method="post">
+    <div>
+    <h1 style="margin-top:100px">Connexion</h1>
+    <form action="/Account/Login" method="post" >
+        <div>
         <table>
             <tr>
-                <td>UserName</td>
+                <td>Nom d'utilisateur</td>
                 <td><input type="text" name="username" /></td>
             </tr>
             <tr>
-                <td>Password</td>
+                <td>Mot de passe</td>
                 <td><input type="password" name="password" /></td>
             </tr>
             <tr>
-                <td>Remember Me</td>
+                <td>Se souvenir de moi</td>
                 <td><input type="checkbox" name="rememberme" /></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Login" /></td>
             </tr>
         </table>
+            </div>
     </form>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/site.js"></script>
 </body>
 </html>

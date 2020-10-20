@@ -4596,7 +4596,7 @@ input[type=button].btn-block {
     }
 
 .navbar-light .navbar-brand {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(130, 100, 255, 7);
 }
 
     .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
@@ -10614,7 +10614,7 @@ hr.light {
 @media (min-width: 992px) {
     #mainNav {
         box-shadow: none;
-        background-color: transparent;
+        background-color: rgba(70, 130, 255, 0.7);
     }
 
         #mainNav .navbar-brand {
@@ -10665,6 +10665,7 @@ header.masthead {
     padding-bottom: calc(10rem - 4.5rem);
     background: linear-gradient(to bottom, rgba(6, 107, 147, 0.8) 0%, rgba(221, 244, 254, 0.1) 100%), url("../assets/img/strasbourg_home_bato.jpg");
     background-position: center;
+    margin-top:100px;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
@@ -10676,9 +10677,10 @@ header.masthead {
 
 @media (min-width: 992px) {
     header.masthead {
-        height: 100vh;
-        min-height: 40rem;
+        height: 50vh;
+        /*min-height: 40rem;*/
         padding-top: 4.5rem;
+        margin-top: 100px;
         padding-bottom: 0;
         background-image: url('../assets/img/strasbourg_home_bato.jpg');
     }
