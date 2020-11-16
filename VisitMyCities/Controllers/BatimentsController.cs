@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using VisitMyCities.DataModel.DataAccessLayer;
 
 namespace VisitMyCities.Controllers
 {
+    [Route("[controller]/[Action]")]
     public class BatimentsController : Controller
     {
         private readonly VisitMyCitiesContext _context;
@@ -20,12 +22,14 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: Batiments
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var visitMyCitiesContext = _context.Batiments.Include(b => b.Ville);
             return View(await visitMyCitiesContext.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Batiments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -46,6 +50,7 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: Batiments/Create
+        
         public IActionResult Create()
         {
             ViewData["VilleId"] = new SelectList(_context.Villes, "VilleId", "NomVille");
@@ -55,6 +60,7 @@ namespace VisitMyCities.Controllers
         // POST: Batiments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BatimentId,NomBatiment,URLPhoto,TypeBatiment,DescriptionBatiment,Longitude,Latitude,MonumentHistorique,DateConstruction,VilleId")] Batiment batiment)
@@ -70,6 +76,7 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: Batiments/Edit/5
+     
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,6 +96,7 @@ namespace VisitMyCities.Controllers
         // POST: Batiments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BatimentId,NomBatiment,URLPhoto,TypeBatiment,DescriptionBatiment,Longitude,Latitude,MonumentHistorique,DateConstruction,VilleId")] Batiment batiment)
@@ -123,6 +131,7 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: Batiments/Delete/5
+      
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,6 +151,7 @@ namespace VisitMyCities.Controllers
         }
 
         // POST: Batiments/Delete/5
+     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -152,6 +162,7 @@ namespace VisitMyCities.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         private bool BatimentExists(int id)
         {
             return _context.Batiments.Any(e => e.BatimentId == id);

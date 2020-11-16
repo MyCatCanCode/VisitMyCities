@@ -48,6 +48,7 @@ namespace VisitMyCities.Controllers
                 from liste in _context.ListesDeVoyage
                 join batlist in _context.BatimentsListesDeVoyage on liste.IdListe equals batlist.IdListe
                 join batiment in _context.Batiments on batlist.BatimentId equals batiment.BatimentId
+                where liste.IdListe == id
                 select new Batiment { 
                     NomBatiment = batiment.NomBatiment,
                     Adresse = batiment.Adresse,

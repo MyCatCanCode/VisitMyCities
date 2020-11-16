@@ -17,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Third party plugin CSS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="~/css/site.css" rel="stylesheet" />
@@ -28,71 +29,75 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 
     </head>
+    <body>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+        <header class="masthead">
+        </header>
+        <br /><br />
+        <script type="text/javascript">
+            $(document).ready(function ($) {
+                $('#tablelist').DataTable({
+                    "paging": false,
+                    "fnInitComplete": function () {
+                        //var myCustomScrollbar = document.querySelector('#tablelist_wrapper .dataTables_scrollBody');
+                        //var ps = new PerfectScrollbar(myCustomScrollbar);
+                    },
+                    "scrollY": 600, "scrollX": 1000
+                });
+                $('.dataTables_length').addClass('bs-select');
+            });
+        </script>
+        <p>
+            <a asp-action="Create">Ajouter une ville</a>
+        </p>
+        <table id="tablelist" class="table table-hover dataTable table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        Ville
+                    </th>
+                    <th>
+                        URL Blason
+                    </th>
+                    <th>
+                        Région
+                    </th>
 
-<header class="masthead">
-</header>
-<br /><br />
-      <script type="text/javascript">
-          $(document).ready(function () {
-              $('#tablelist').DataTable({
-                  "paging": false,
-                  "fnInitComplete": function () {
-                      var myCustomScrollbar = document.querySelector('#tablelist_wrapper .dataTables_scrollBody');
-                      var ps = new PerfectScrollbar(myCustomScrollbar);
-                  },
-                  "scrollY": 600, "scrollX": 1000
-              });
-              $('.dataTables_length').addClass('bs-select');
-          });
-      </script>
-<p>
-    <a asp-action="Create">Ajouter une ville</a>
-</p>
-<table id="tablelist" class="table table-hover dataTable table-responsive">
-    <thead>
-        <tr>
-            <th>
-                Ville
-            </th>
-            <th>
-                URL Blason
-            </th>
-            <th>
-                Région
-            </th>
+                    <th>
+                        Département
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomVille)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Blason)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomRegion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomDepartement)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
+                        </td>
+                    </tr>
+                }
 
-            <th>
-                Département
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomVille)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Blason)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomRegion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomDepartement)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
-            </td>
-        </tr>
-        }
+            </tbody>
+        </table>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -101,7 +106,4 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
         <script src="~/js/site.js"></script>
-
-        
-    </tbody>
-</table>
+    </body>

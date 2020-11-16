@@ -95,10 +95,10 @@ namespace VisitMyCities.Controllers.API
 
         // DELETE: api/Batiments/5
         [HttpDelete]
-        public void Delete(BatimentDTO dto)
+        public void DeleteBatiment(BatimentDTO dto)
         {
             Batiment bat = (Batiment)dto;
-            _repos.Delete((Batiment)bat);
+            _repos.Delete(bat);
         }
 
         //private bool BatimentExists(int id)

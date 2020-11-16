@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,9 @@ using VisitMyCities.DataModel.DataAccessLayer;
 namespace VisitMyCities.Controllers.API
 {
     [Route("api/[controller]/[Action]")]
+    [EnableCors]
     [ApiController]
+    [AllowAnonymous]
     public class VillesController : ControllerBase
     {
         private readonly VisitMyCitiesContext _context;
@@ -22,6 +26,7 @@ namespace VisitMyCities.Controllers.API
         }
 
         // GET: api/Villes
+      
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ville>>> GetVilles()
         {
@@ -29,6 +34,7 @@ namespace VisitMyCities.Controllers.API
         }
 
         // GET: api/Villes/5
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<Ville>> GetVille(int id)
         {
@@ -45,6 +51,7 @@ namespace VisitMyCities.Controllers.API
         }
 
         // GET: api/Villes/BatimentsParVille/5
+        [EnableCors]
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Batiment>>> BatimentsParVille(int id)
         {

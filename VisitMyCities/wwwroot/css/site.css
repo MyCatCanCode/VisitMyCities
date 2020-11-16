@@ -10668,7 +10668,7 @@ header.masthead {
     margin-top:100px;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-size: cover;
+    /*background-size: cover;*/
 }
 
     header.masthead h1 {

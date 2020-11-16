@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitMyCities", "VisitMyCities\VisitMyCities.csproj", "{B8DF7C1C-031A-4DAC-B321-CE48026EF820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitMyCities", "VisitMyCities\VisitMyCities.csproj", "{B8DF7C1C-031A-4DAC-B321-CE48026EF820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitMyCities.DataModel", "VisitMyCities.DataModel\VisitMyCities.DataModel.csproj", "{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitMyCities.DataModel", "VisitMyCities.DataModel\VisitMyCities.DataModel.csproj", "{C950FF1D-62CA-45A8-BEDE-3152A5629B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

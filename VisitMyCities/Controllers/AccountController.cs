@@ -94,7 +94,7 @@ namespace VisitMyCities.Controllers
         {
             this.loginManager.SignOutAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         // Permet d’afficher une vue indiquant l’échec de l’authentification.

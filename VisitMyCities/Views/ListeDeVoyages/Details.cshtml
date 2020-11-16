@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <h1>Details</h1>
+    <h1 style="margin-bottom:50px; margin-top:100px">Details</h1>
 
     <div>
         <p>
@@ -33,7 +33,8 @@
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ListeDeVoyage.TitreListe)
+                Nom de la liste
+                @*@Html.DisplayNameFor(model => model.ListeDeVoyage.TitreListe)*@
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.ListeDeVoyage.TitreListe)
@@ -41,7 +42,7 @@
         </dl>
         <button type="submit" class="btn-success">Ajouter un bâtiment</button>
 
-        <div class="card-deck">
+        <div class="card-deck" style="margin:20px">
 
             @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in Model.Batiments)
             {
@@ -66,8 +67,8 @@
         </div>
     </div>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.ListeDeVoyage.IdListe">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.ListeDeVoyage.IdListe">Modifier</a> |
+        <a asp-action="Index">Retour aux listes de voyage</a>
     </div>
     <p>
         <img src="~/assets/img/button-304224_640.png" style="width:50px" />

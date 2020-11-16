@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: DetailArchitecturals
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var visitMyCitiesContext = _context.DetailsArchi.Include(d => d.Batiment);
@@ -27,6 +29,7 @@ namespace VisitMyCities.Controllers
         }
 
         // GET: DetailArchitecturals/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
