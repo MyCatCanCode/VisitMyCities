@@ -1,7 +1,7 @@
-﻿@model VisitMyCities.Models.ListeVoyageViewModel
+﻿@model VisitMyCities.Models.ProfilViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Profil Utilisateur";
 }
 <head>
     <meta charset="utf-8" />
@@ -23,44 +23,52 @@
 </head>
 <body>
 
-    <h1 style="margin-bottom:50px; margin-top:100px">@Html.DisplayFor(model => model.ListeDeVoyage.TitreListe)</h1>
+    <h1 style="margin-bottom:50px; margin-top:100px">Mon profil utilisateur</h1>
 
-    <div> 
-        <p>
-            <img src="~/assets/img/button-304224_640.png" style="width:50px" />
-            <a asp-action="Create">Ajouter un bâtiment</a>
-        </p>
-             
+    <div>
+        <hr />
+        @*<dl class="row">
+            <dt class="col-sm-2">
+                Mon profil utilisateur
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Utilisateur.NomUtilisateur)
+            </dd>
+        </dl>
+        <button type="submit" class="btn-success">Ajouter un bâtiment</button>*@
+
         <div class="card-deck" style="margin:20px">
 
-            @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in Model.Batiments)
-            {
+           
                 <div style="width:300px; text-align:center; border: 1px;">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">@item.NomBatiment</div>
+                            <div class="card-title">@Html.DisplayFor(model => model.Utilisateur.UserName) </div>
                         </div>
                         <div class="card-body">
                             <div class="card-title"></div>
-                            <img src="~/@item.URLPhoto" style="width:100%; text-align:center" />
+                            <img src="~/assets/img/avatar_1280.png" style="width:200px"/>
 
                         </div>
                         <div class="card-footer">
                             @*<div class="card-title">@item.Ville.NomVille</div>*@
+                            <button type="submit" class="btn-success">Modifier</button>
                         </div>
-                        @Html.ActionLink("Details", "Details", new { id = item.BatimentId }, new { @class = "btn btn-info float-right" })
+
                     </div>
                 </div>
 
-            }
+            
         </div>
     </div>
-    <br />
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.ListeDeVoyage.IdListe">Modifier</a> |
-        <a asp-action="Index">Retour aux listes de voyage</a>
+        @*<a asp-action="Edit" asp-route-id="@Model.ListeDeVoyage.IdListe">Modifier</a> |
+        <a asp-action="Index">Retour</a>*@
     </div>
- 
+    <p>
+        
+        <a asp-action="Create">Retour à l'accueil</a>
+    </p>
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

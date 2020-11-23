@@ -8,9 +8,13 @@ namespace VisitMyCities.DataModel.BusinessObjects
 {
     public class Utilisateur : IdentityUser
     {
+        [PersonalData]
         public string NomUtilisateur { get; set; }
 
+        [PersonalData]
         public string PrenomUtilisateur { get; set; }
+
+        [PersonalData]
         [Required]
         [EmailAddress]
         public override string Email { get; set; }

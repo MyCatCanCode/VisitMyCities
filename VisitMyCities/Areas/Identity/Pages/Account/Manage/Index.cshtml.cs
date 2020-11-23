@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VisitMyCities.DataModel.BusinessObjects;
 
 namespace VisitMyCities.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Utilisateur> _userManager;
+        private readonly SignInManager<Utilisateur> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Utilisateur> userManager,
+            SignInManager<Utilisateur> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,12 +33,25 @@ namespace VisitMyCities.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [PersonalData]
+            [Display(Name = "Nom")]
+            public string NomUtilisateur { get; set; }
+
+            [PersonalData]
+            [Display(Name = "Prénom")]
+            public string PrenomUtilisateur { get; set; }
+
+            [PersonalData]
+            [Required]
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Utilisateur user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -46,6 +60,9 @@ namespace VisitMyCities.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                NomUtilisateur = user.NomUtilisateur,
+                PrenomUtilisateur = user.PrenomUtilisateur,
+                Email = user.Email,
                 PhoneNumber = phoneNumber
             };
         }
@@ -86,6 +103,23 @@ namespace VisitMyCities.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            if (Input.NomUtilisateur != user.NomUtilisateur)
+            {
+                user.NomUtilisateur = Input.NomUtilisateur;
+            }
+
+            if (Input.PrenomUtilisateur != user.PrenomUtilisateur)
+            {
+                user.PrenomUtilisateur = Input.PrenomUtilisateur;
+            }
+
+            if (Input.Email != user.Email)
+            {
+                user.Email = Input.Email;
+            }
+
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

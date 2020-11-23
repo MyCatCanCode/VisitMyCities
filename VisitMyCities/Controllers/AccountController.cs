@@ -75,6 +75,13 @@ namespace VisitMyCities.Controllers
             return this.View();
         }
 
+        // Permet d’accéder au formulaire de connexion.
+        [HttpGet]
+        public IActionResult Profil()
+        {
+            return this.View();
+        }
+
         // Permet à un utilisateur de s’authentifier.
         [HttpPost]
         [AllowAnonymous]

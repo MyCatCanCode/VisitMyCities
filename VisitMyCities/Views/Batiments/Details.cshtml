@@ -26,72 +26,60 @@
     <header class="masthead">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0">Ajoutez des informations utiles ?</h3>
+                <h1 class="mb-0">@Html.DisplayFor(model => model.NomBatiment)</h1>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.NomBatiment)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.NomBatiment)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.URLPhoto)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.URLPhoto)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.TypeBatiment)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.TypeBatiment)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DescriptionBatiment)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DescriptionBatiment)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Longitude)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Longitude)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Latitude)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Latitude)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.MonumentHistorique)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.MonumentHistorique)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DateConstruction)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DateConstruction)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Ville)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Ville.NomVille)
-                    </dd>
-                    </dl>
+                    <div class="col-md-6">
+                        <br />
+                        <dt>
+                            Type :
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.TypeBatiment)
+                        </dd>
+                        <br />
+                        <dt>
+                            Description :
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DescriptionBatiment)
+                        </dd>
+                        <br />
+                        <dt>
+                            Monument historique ?
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.MonumentHistorique)
+                        </dd>
+                        <br />
+                        <dt>
+                            Date de construction :
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DateConstruction)
+                        </dd>
+                        <br />
+                        <dt>
+                            Ville :
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Ville.NomVille), @Html.DisplayFor(model => model.Ville.NomRegion)
+                        </dd>
+
+                    </div>
+                    <div class="col-md-6" id="photo">
+                        <img src="~/@Html.DisplayFor(model => model.URLPhoto)" style="width:100%; border-radius:10px"/>
+                    </div>
                 </div>
+                
+            </div>
+            <div class="card-footer">
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.BatimentId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.BatimentId">Modifier la fiche</a> |
+                    <a asp-action="Index">Liste des villes</a>
                 </div>
             </div>
-          </div>
         </div>
     </header>
 </body>

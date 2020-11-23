@@ -17,14 +17,14 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Third party plugin CSS-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css" />
+        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css" />*@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="~/css/site.css" rel="stylesheet" />
+        @*<link href="~/css/site.css" rel="stylesheet" />*@
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500" rel="stylesheet" />
+        @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />*@
+        @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />*@
+        @*<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500" rel="stylesheet" />*@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" rel="stylesheet" type="text/css" />
@@ -52,52 +52,53 @@
                 $('.dataTables_length').addClass('bs-select');
             });
         </script>
-        <p>
-            <a asp-action="Create">Ajouter une ville</a>
-        </p>
-        <table id="tablelist" class="table table-hover dataTable table-responsive">
-            <thead>
-                <tr>
-                    <th>
-                        Ville
-                    </th>
-                    <th>
-                        URL Blason
-                    </th>
-                    <th>
-                        Région
-                    </th>
-
-                    <th>
-                        Département
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <a asp-action="Create">Ajouter une ville</a>
+                    </div>
+                </div>
+            </div>
+            <table id="tablelist" class="table table-hover dataTable table-responsive">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomVille)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Blason)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomRegion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomDepartement)
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
-                        </td>
-                    </tr>
-                }
+                        <th>
+                            Ville
+                        </th>
+                        <th>
+                            Région
+                        </th>
 
-            </tbody>
-        </table>
+                        <th>
+                            Département
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomVille)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomRegion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomDepartement)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
