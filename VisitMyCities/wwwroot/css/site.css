@@ -10751,3 +10751,57 @@ header.masthead {
     color: rgba(255, 255, 255, 0.75);
 }
 
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type: none;
+    padding: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.rating-stars ul > li.star {
+    display: inline-block;
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star {
+    /*font-size: 2.5em;*/ /* Change the size of the stars */
+    color: #ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star:hover {
+    color: #FFCC36;
+}
+
+    .rating-stars ul > li.star.rating {
+        color: #FFCC36;
+    }
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected {
+    color: #FF912C;
+}
+
+/* Evaluation box*/
+.success-box {
+    margin: 10px 0;
+    padding: 10px 10px;
+    border: 1px solid #eee;
+    /*background: #f9f9f9;*/
+    /*visibility: hidden;*/
+}
+.success-box img {
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.save-icon {
+    color : #CCC;
+}
+
+.success-box-container {
+    height: 80px;
+}
+

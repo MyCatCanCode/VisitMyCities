@@ -23,12 +23,105 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#box-batiment").hide();
+            /* 1. Visualizing things on Hover - See next part for action on click */
+            $('#stars li').on('mouseover', function () {
+                var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+                var stars = $(this).parent().children('li.star');
+
+                // Now highlight all the stars that's not after the current hovered star
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('rating');
+                    
+                }
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('rating');
+                    
+                }
+
+            }).on('mouseout', function () {
+                $(this).parent().children('li.star').each(function (e) {
+                    $(this).removeClass('rating');
+                });
+            });
+            /* 2. Action to perform on click */
+            $('#stars li').on('click', function () {
+                var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+                var stars = $(this).parent().children('li.star');
+
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('selected');
+                }
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('selected');
+                }
+                // Message après avoir cliqué sur les étoiles
+                var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+                var msg = "";
+                if (ratingValue > 1) {
+                    msg = "Merci! Vous avez donné " + ratingValue + " étoiles à ce lieu.";
+                }
+                else {
+                    msg = "Nous sommes désolés que ce lieu ne vous ait pas plu :-(";
+                }
+                responseMessage(msg);
+
+                //$("#box-batiment").show();
+            });
+        });
+        function responseMessage(msg) {
+            $('#box-batiment').fadeIn(200);
+            $('.success-box div.text-message').html("<span>" + msg + "</span>");
+            $("#save-rating-batiment").html("Enregistrer cette évaluation");
+        }
+    </script>
+
     <header class="masthead">
         <div class="card card-outline-secondary">
             <div class="card-header">
                 <h1 class="mb-0">@Html.DisplayFor(model => model.NomBatiment)</h1>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <section class=' rating-widget'>
+                        <div class='rating-stars'>
+                            <ul id='stars'>
+                                <li class='star' title='Décevant' data-value='1'>
+                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                                </li>
+                                <li class='star' title='Moyen' data-value='2'>
+                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                                </li>
+                                <li class='star' title='Sympa mais sans plus...' data-value='3'>
+                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                                </li>
+                                <li class='star' title='Très intéressant, à voir !' data-value='4'>
+                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                                </li>
+                                <li class='star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="success-box-container">
+                            <div class='success-box' id="box-batiment">
+                                <div class='clearfix'></div>
+
+                                <div class='text-message'></div>
+                                <div class='clearfix'></div>
+                                <div class="save-box">
+                                    <i class="fas fa-check fa-2x save-icon"></i>
+                                    <span id="save-rating-batiment"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                </section>
+            </div>
                 <div class="row">
                     <div class="col-md-6">
                         <br />
@@ -69,10 +162,15 @@
 
                     </div>
                     <div class="col-md-6" id="photo">
-                        <img src="~/@Html.DisplayFor(model => model.URLPhoto)" style="width:100%; border-radius:10px"/>
+                        @if (Model.URLPhoto == null)
+                        {
+                            Model.URLPhoto = "assets/img/placeholder-image.png";
+                        }
+                        <img src="~/@Html.DisplayFor(model => model.URLPhoto)" style="width:100%; border-radius:10px" />
+
                     </div>
                 </div>
-                
+
             </div>
             <div class="card-footer">
                 <div>

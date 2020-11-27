@@ -50,6 +50,7 @@ namespace VisitMyCities.Controllers
                 join batiment in _context.Batiments on batlist.BatimentId equals batiment.BatimentId
                 where liste.IdListe == id
                 select new Batiment { 
+                    BatimentId = batiment.BatimentId,
                     NomBatiment = batiment.NomBatiment,
                     Adresse = batiment.Adresse,
                     URLPhoto = batiment.URLPhoto

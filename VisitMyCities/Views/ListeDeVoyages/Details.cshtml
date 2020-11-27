@@ -32,7 +32,12 @@
         </p>
              
         <div class="card-deck" style="margin:20px">
-
+            @if (Model.Batiments.Count == 0)
+            {
+            <div style="width:300px; text-align:center; border: 1px grey solid;">Cette liste n'a pas encore de bâtiment.</div>
+            }
+            else
+            {
             @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in Model.Batiments)
             {
                 <div style="width:300px; text-align:center; border: 1px;">
@@ -48,10 +53,11 @@
                         <div class="card-footer">
                             @*<div class="card-title">@item.Ville.NomVille</div>*@
                         </div>
-                        @Html.ActionLink("Details", "Details", new { id = item.BatimentId }, new { @class = "btn btn-info float-right" })
+                        @Html.ActionLink("Details", "Details", "Batiments", new { id = item.BatimentId }, new { @class = "btn btn-info float-right" })
                     </div>
                 </div>
 
+            }
             }
         </div>
     </div>

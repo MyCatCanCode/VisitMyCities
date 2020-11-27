@@ -30,24 +30,35 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    <div class="form-group">
+                        <span class="text-warning">
+                            <i class="ratingStar fas fa-star fa-3x"></i>
+                            <i class="ratingStar fas fa-star fa-3x"></i>
+                            <i class="ratingStar fas fa-star fa-3x"></i>
+                            <i class="ratingStar fas fa-star fa-3x"></i>
+                            <i class="ratingStar far fa-star fa-3x"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-7">
                         <br />
-                        <dt >
-                            Région :
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NomRegion)
                         </dt>
                         <dd >
                             @Html.DisplayFor(model => model.NomRegion)
                         </dd>
                         <br />
-                        <dt >
-                            Numéro de département :
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NumDepartement)
                         </dt>
                         <dd >
                             @Html.DisplayFor(model => model.NumDepartement)
                         </dd>
                         <br />
-                        <dt >
-                            Nom du département :
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NomDepartement)
                         </dt>
                         <dd >
                             @Html.DisplayFor(model => model.NomDepartement)

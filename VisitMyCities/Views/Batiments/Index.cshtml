@@ -40,12 +40,19 @@
                     //var myCustomScrollbar = document.querySelector('#tablelist_wrapper .dataTables_scrollBody');
                     //var ps = new PerfectScrollbar(myCustomScrollbar);
                 },
-                "scrollY": 800, "scrollX": 1200
+                "scrollY": 800, "scrollX": 1300
             });
             $('.dataTables_length').addClass('bs-select');
         });
+
+        $(".ratingStar").hover(function () {
+            $(".ratingStar").addClass("far").removeClass("fas");
+
+            $(this).addClass("fas").removeClass("far");
+            $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+        });
     </script>
-    <p>
+   
         <section class="page-section" id="services">
             <div class="container">
                 <div class="row justify-content-center">
@@ -65,13 +72,13 @@
                             @Html.DisplayNameFor(model => model.TypeBatiment)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MonumentHistorique)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.DateConstruction)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Ville)
+                        </th>
+                        <th>
+                            Avis
                         </th>
                         <th></th>
                     </tr>
@@ -81,28 +88,37 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomBatiment)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TypeBatiment)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MonumentHistorique)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateConstruction)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Ville.NomVille)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.BatimentId">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.BatimentId">Delete</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomBatiment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeBatiment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateConstruction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ville.NomVille)
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <span class="text-warning">
+                                    <i class="ratingStar fas fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.BatimentId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.BatimentId">Delete</a>
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>

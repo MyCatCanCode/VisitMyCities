@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Third party plugin CSS-->
-        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css" />*@
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         @*<link href="~/css/site.css" rel="stylesheet" />*@
@@ -47,16 +47,23 @@
                         //var myCustomScrollbar = document.querySelector('#tablelist_wrapper .dataTables_scrollBody');
                         //var ps = new PerfectScrollbar(myCustomScrollbar);
                     },
-                    "scrollY": 600, "scrollX": 1000
+                    "scrollY": 800, "scrollX": 1400
                 });
                 $('.dataTables_length').addClass('bs-select');
+            });
+
+            $(".ratingStar").hover(function () {
+                $(".ratingStar").addClass("far").removeClass("fas");
+
+                $(this).addClass("fas").removeClass("far");
+                $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
             });
         </script>
         
         <section class="page-section" id="services">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
+                    <div class="col-lg-6 text-center">
                         <a asp-action="Create">Ajouter une ville</a>
                     </div>
                 </div>
@@ -65,35 +72,51 @@
                 <thead>
                     <tr>
                         <th>
-                            Ville
+                            @Html.DisplayNameFor(model => model.NomVille)
                         </th>
                         <th>
-                            Région
+                            @Html.DisplayNameFor(model => model.NomRegion)
                         </th>
 
                         <th>
-                            Département
+                            @Html.DisplayNameFor(model => model.NumDepartement)
                         </th>
-                        <th></th>
+                        <th>
+                            Avis
+                        </th>
+                        <th>
+                            
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomVille)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomRegion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomDepartement)
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomVille)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomRegion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomDepartement)
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <span class="text-warning">
+                                    <i class="ratingStar fas fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                    <i class="ratingStar far fa-star"></i>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
+                        </td>
+                    </tr>
                     }
 
                 </tbody>
