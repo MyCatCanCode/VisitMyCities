@@ -1,0 +1,29 @@
+28/11/20 :
+Ajout d'une table de liaison entre Utilisateurs, qui dérive de la classe IdentityUsers et la table Batiments, pour permettre à un utilisateur d'évaluer un bâtiment avec un système d'étoile.
+---------------------------------------------------------
+
+01/12/20 : 
+Migration pour intégrer l'évaluation des bâtiments
+Ajout table de liaison UtilisateurBatiment
+Methode pour enregistrer une évaluation dans la base de données.
+
+Problèmes rencontrés :
+
+Comment récupérer l'id de la table AspUsers
+Injecter le UserManager dans le constructeur du controller, puis utiliser :
+var currentUserId = _userManager.GetUserId(User);
+https://stackoverflow.com/questions/51765214/get-user-id-in-asp-net-core-2
+
+Comment récupérer le nombre d'étoiles sélectionnées en jQuery
+http://jsfiddle.net/YUY69/
+https://stackoverflow.com/questions/20699485/use-data-value-of-li-as-form-input-using-hidden-input-field
+
+En jQuery : (chaque <li> a un champ data-value qui donne sa valeur)
+var theValue = $(this).attr('data-value');
+$("#starstosave").val(theValue);
+Quels champs input utiliser et comment faire le lien
+<input name="id" type="hidden" value="@Model.BatimentId"/>
+<input id="starstosave" name="starstosave" type="hidden" />
+C'est la propriété name qui donne le nom du paramètre passé dans la méthode d'action du Controller ( ici id et starstosave )
+--------------------------------------------------------------
+

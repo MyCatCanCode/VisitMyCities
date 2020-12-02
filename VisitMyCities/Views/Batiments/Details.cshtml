@@ -69,13 +69,29 @@
                 }
                 responseMessage(msg);
 
+                // Attribution du nombre d'étoiles au champ input du formulaire
+                var theValue = $(this).attr('data-value');
+                $("#starstosave").val(theValue);
+                
+
                 //$("#box-batiment").show();
             });
         });
         function responseMessage(msg) {
             $('#box-batiment').fadeIn(200);
             $('.success-box div.text-message').html("<span>" + msg + "</span>");
-            $("#save-rating-batiment").html("Enregistrer cette évaluation");
+            //$("#save-rating-batiment").html("Enregistrer cette évaluation");
+            $('#save-evaluation').on('mouseover', function () {
+                $('#save-evaluation').removeClass('btn-secondary').addClass('btn-success');
+            }).on('mouseout', function () {
+                $('#save-evaluation').removeClass('btn-success').addClass('btn-secondary');
+            });
+
+            $('#delete-evaluation').on('mouseover', function () {
+                $('#delete-evaluation').removeClass('btn-secondary').addClass('btn-danger');
+            }).on('mouseout', function () {
+                $('#delete-evaluation').removeClass('btn-danger').addClass('btn-secondary');
+            });
         }
     </script>
 
@@ -114,8 +130,22 @@
                                 <div class='text-message'></div>
                                 <div class='clearfix'></div>
                                 <div class="save-box">
-                                    <i class="fas fa-check fa-2x save-icon"></i>
-                                    <span id="save-rating-batiment"></span>
+                                    <div id="save-rating-batiment">
+                                        <form asp-action="SaveEvaluation" asp-for="BatimentId" class="ratingform">
+                                            <input name="id" type="hidden" value="@Model.BatimentId"/>
+                                            <input id="starstosave" name="starstosave" type="hidden" />
+                                            <button type="submit" class="btn btn-secondary" id="save-evaluation">
+                                                <i class="far fa-save fa-2x save-icon" id="save-icon"></i>
+                                                
+                                            </button>
+                                        </form>
+                                        <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
+                                            <button type="submit" class="btn btn-secondary" id="delete-evaluation">
+                                                <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
+                                                
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

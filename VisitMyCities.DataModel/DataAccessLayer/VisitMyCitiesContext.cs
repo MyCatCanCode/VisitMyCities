@@ -21,6 +21,8 @@ namespace VisitMyCities.DataModel.DataAccessLayer
         public DbSet<ListeDeVoyage> ListesDeVoyage { get; set; }
         public DbSet<BatimentListeDeVoyage> BatimentsListesDeVoyage { get; set; }
 
+        public DbSet<UtilisateurBatiment> UtilisateurBatiment { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -29,7 +31,9 @@ namespace VisitMyCities.DataModel.DataAccessLayer
             modelBuilder.Entity<Ville>().ToTable("Ville");
             modelBuilder.Entity<ListeDeVoyage>().ToTable("ListeDeVoyage");
             modelBuilder.Entity<BatimentListeDeVoyage>().ToTable("BatimentListeDeVoyage");
+            modelBuilder.Entity<UtilisateurBatiment>().ToTable("UtilisateurBatiment");
 
+            // Table de liaison BatimentListeDeVoyage
             modelBuilder.Entity<BatimentListeDeVoyage>()
             .HasKey(o => new { o.BatimentId, o.IdListe });
 
@@ -44,7 +48,23 @@ namespace VisitMyCities.DataModel.DataAccessLayer
                 .WithMany(l => l.BatimentsListeDeVoyage)
                 .HasForeignKey(bl => bl.IdListe)
                 .OnDelete(DeleteBehavior.NoAction);
-            
+
+            // Table de liaison UtilisateurBatiment
+            modelBuilder.Entity<UtilisateurBatiment>()
+            .HasKey(u => new { u.UtilisateurId, u.BatimentId });
+
+            modelBuilder.Entity<UtilisateurBatiment>()
+            .HasOne(u => u.Utilisateur)
+            .WithMany(ub => ub.BatimentsEvalues)
+            .HasForeignKey(ub => ub.UtilisateurId);
+
+
+            modelBuilder.Entity<UtilisateurBatiment>()
+                .HasOne(b => b.Batiment)
+                .WithMany(ub => ub.BatimentsEvalues)
+                .HasForeignKey(b => b.BatimentId)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }

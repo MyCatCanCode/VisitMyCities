@@ -27,5 +27,9 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public bool SeSouvenir { get; set; }
 
         public ICollection<ListeDeVoyage> ListesDeVoyage { get; set; }
+
+        public ICollection<UtilisateurBatiment> BatimentsEvalues { get; set; }
+
+
     }
 }

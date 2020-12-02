@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
+using Microsoft.AspNetCore.Identity;
 
 namespace VisitMyCities.Controllers
 {
@@ -15,10 +16,13 @@ namespace VisitMyCities.Controllers
     public class BatimentsController : Controller
     {
         private readonly VisitMyCitiesContext _context;
+        private readonly UserManager<Utilisateur> _userManager;
 
-        public BatimentsController(VisitMyCitiesContext context)
+        public BatimentsController(VisitMyCitiesContext context, UserManager<Utilisateur> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: Batiments
@@ -167,5 +171,31 @@ namespace VisitMyCities.Controllers
         {
             return _context.Batiments.Any(e => e.BatimentId == id);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task SaveEvaluation(int id, int starstosave)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+
+            UtilisateurBatiment ub = new UtilisateurBatiment
+            {
+                BatimentId = id,
+                UtilisateurId = currentUserId,
+                NombreEtoiles = starstosave
+            };
+
+            await _context.UtilisateurBatiment.AddAsync(ub);
+            await _context.SaveChangesAsync();
+
+
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteEvaluation(int? id)
+        //{
+
+        //}
     }
 }
