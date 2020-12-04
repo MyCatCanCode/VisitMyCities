@@ -23,6 +23,8 @@ namespace VisitMyCities.DataModel.DataAccessLayer
 
         public DbSet<UtilisateurBatiment> UtilisateurBatiment { get; set; }
 
+        public DbSet<UtilisateurVille> UtilisateurVille { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -32,6 +34,7 @@ namespace VisitMyCities.DataModel.DataAccessLayer
             modelBuilder.Entity<ListeDeVoyage>().ToTable("ListeDeVoyage");
             modelBuilder.Entity<BatimentListeDeVoyage>().ToTable("BatimentListeDeVoyage");
             modelBuilder.Entity<UtilisateurBatiment>().ToTable("UtilisateurBatiment");
+            modelBuilder.Entity<UtilisateurVille>().ToTable("UtilisateurVille");
 
             // Table de liaison BatimentListeDeVoyage
             modelBuilder.Entity<BatimentListeDeVoyage>()
@@ -49,6 +52,7 @@ namespace VisitMyCities.DataModel.DataAccessLayer
                 .HasForeignKey(bl => bl.IdListe)
                 .OnDelete(DeleteBehavior.NoAction);
 
+
             // Table de liaison UtilisateurBatiment
             modelBuilder.Entity<UtilisateurBatiment>()
             .HasKey(u => new { u.UtilisateurId, u.BatimentId });
@@ -63,6 +67,23 @@ namespace VisitMyCities.DataModel.DataAccessLayer
                 .HasOne(b => b.Batiment)
                 .WithMany(ub => ub.BatimentsEvalues)
                 .HasForeignKey(b => b.BatimentId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            // Table de liaison UtilisateurVille
+            modelBuilder.Entity<UtilisateurVille>()
+            .HasKey(u => new { u.UtilisateurId, u.VilleId });
+
+            modelBuilder.Entity<UtilisateurVille>()
+            .HasOne(u => u.Utilisateur)
+            .WithMany(uv => uv.VillesEvaluees)
+            .HasForeignKey(uv => uv.UtilisateurId);
+
+
+            modelBuilder.Entity<UtilisateurVille>()
+                .HasOne(v => v.Ville)
+                .WithMany(uv => uv.VillesEvaluees)
+                .HasForeignKey(v => v.VilleId)
                 .OnDelete(DeleteBehavior.NoAction);
 
         }

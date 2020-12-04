@@ -27,5 +27,8 @@ namespace VisitMyCities.DataModel.BusinessObjects
         public string NomMaire { get; set; }
         // Propriété de navigation
         public ICollection<Batiment> Batiments { get; set; }
+
+        public ICollection<UtilisateurVille> VillesEvaluees { get; set; }
+
     }
 }

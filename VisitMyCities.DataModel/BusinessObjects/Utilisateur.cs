@@ -30,6 +30,6 @@ namespace VisitMyCities.DataModel.BusinessObjects
 
         public ICollection<UtilisateurBatiment> BatimentsEvalues { get; set; }
 
-
+        public ICollection<UtilisateurVille> VillesEvaluees { get; set; }
     }
 }

@@ -1,3 +1,22 @@
+Tâches effectuées du 16/11/20 au 27/11/20 :
+- Corriger les erreurs console (quand on fait F12) sur page d'accueil
+- Corriger erreurs console dans la page VisiteMaVille
+- Corriger les erreurs console sur page Bâtiments.
+- Corriger erreurs requête dans liste de voyage Détails.
+- Faire des fiches pour chaque bâtiment (cards).
+- Mettre DataTable pour les bâtiments.
+- Améliorer page Villes/Détails.
+- Faire des fiches pour les villes (cards).
+- Améliorer l'apparence de la liste de voyage.
+- Améliorer apparence Détails listes de voyage Détails.
+- Faire pointer élément de liste de voyage sur la fiche bâtiment correspondante.
+- Pouvoir filtrer des bâtiments.
+
+En cours :
+- Faire profil
+- Mettre en place un système d'évaluations
+
+
 28/11/20 :
 Ajout d'une table de liaison entre Utilisateurs, qui dérive de la classe IdentityUsers et la table Batiments, pour permettre à un utilisateur d'évaluer un bâtiment avec un système d'étoile.
 ---------------------------------------------------------
@@ -27,3 +46,13 @@ Quels champs input utiliser et comment faire le lien
 C'est la propriété name qui donne le nom du paramètre passé dans la méthode d'action du Controller ( ici id et starstosave )
 --------------------------------------------------------------
 
+02/12/20 :
+Matin : réunion d'information mobilité transfrontalière.
+Révisions en Allemand
+Réflexion sur intégration d'une vue partielle dans la vue bâtiments pour l'évaluation d'un bâtiment, pour que, lorsqu'un clique sur un bouton "évaluer", une popup s'ouvre avec les étoiles, le commentaire et la possibilité de sauvegarder / annuler.
+Recherches sur la manière de procéder.
+https://stackoverflow.com/questions/60604161/how-open-popup-dialog-windows-and-save-data-net-core-mvc-via-ajax
+--------------------------------------------------------------
+
+03/12/20 :
+Révisions en Allemand + Passation tests d'admission

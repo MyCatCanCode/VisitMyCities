@@ -1,0 +1,126 @@
+﻿<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+        $(document).ready(function () {
+            $("#box-batiment").hide();
+            /* 1. Visualizing things on Hover - See next part for action on click */
+            $('#stars li').on('mouseover', function () {
+                var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+                var stars = $(this).parent().children('li.star');
+
+                // Now highlight all the stars that's not after the current hovered star
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('rating');
+
+                }
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('rating');
+
+                }
+
+            }).on('mouseout', function () {
+                $(this).parent().children('li.star').each(function (e) {
+                    $(this).removeClass('rating');
+                });
+            });
+            /* 2. Action to perform on click */
+            $('#stars li').on('click', function () {
+                var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+                var stars = $(this).parent().children('li.star');
+
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('selected');
+                }
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('selected');
+                }
+                // Message après avoir cliqué sur les étoiles
+                var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+                var msg = "";
+                if (ratingValue > 1) {
+                    msg = "Merci! Vous avez donné " + ratingValue + " étoiles à ce lieu.";
+                }
+                else {
+                    msg = "Nous sommes désolés que ce lieu ne vous ait pas plu :-(";
+                }
+                responseMessage(msg);
+
+                // Attribution du nombre d'étoiles au champ input du formulaire
+                var theValue = $(this).attr('data-value');
+                $("#starstosave").val(theValue);
+
+
+                //$("#box-batiment").show();
+            });
+        });
+        function responseMessage(msg) {
+            $('#box-batiment').fadeIn(200);
+            $('.success-box div.text-message').html("<span>" + msg + "</span>");
+            //$("#save-rating-batiment").html("Enregistrer cette évaluation");
+            $('#save-evaluation').on('mouseover', function () {
+                $('#save-evaluation').removeClass('btn-secondary').addClass('btn-success');
+            }).on('mouseout', function () {
+                $('#save-evaluation').removeClass('btn-success').addClass('btn-secondary');
+            });
+
+            $('#delete-evaluation').on('mouseover', function () {
+                $('#delete-evaluation').removeClass('btn-secondary').addClass('btn-danger');
+            }).on('mouseout', function () {
+                $('#delete-evaluation').removeClass('btn-danger').addClass('btn-secondary');
+            });
+        }
+</script>
+
+<div class='rating-stars'>
+    <ul id='stars'>
+        <li class='star' title='Décevant' data-value='1'>
+            <i class='fa ratingStar fas fa-star fa-3x'></i>
+        </li>
+        <li class='star' title='Moyen' data-value='2'>
+            <i class='fa ratingStar fas fa-star fa-3x'></i>
+        </li>
+        <li class='star' title='Sympa mais sans plus...' data-value='3'>
+            <i class='fa ratingStar fas fa-star fa-3x'></i>
+        </li>
+        <li class='star' title='Très intéressant, à voir !' data-value='4'>
+            <i class='fa ratingStar fas fa-star fa-3x'></i>
+        </li>
+        <li class='star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+            <i class='fa ratingStar fas fa-star fa-3x'></i>
+        </li>
+
+    </ul>
+</div>
+<div class="success-box-container">
+    <div class='success-box' id="box-batiment">
+        <div class='clearfix'></div>
+
+        <div class='text-message'></div>
+        <div class='clearfix'></div>
+        <div class="save-box">
+            <div id="save-rating-batiment">
+                <form asp-action="SaveEvaluation" asp-for="BatimentId" class="ratingform">
+                    @if (Model is VisitMyCities.DataModel.BusinessObjects.Batiment)
+                    {
+                        <input name="id" type="hidden" value="@Model.BatimentId" />
+                    }
+                    else if (Model is VisitMyCities.DataModel.BusinessObjects.Ville)
+                    {
+                        <input name="id" type="hidden" value="@Model.VilleId" />
+                    }
+                    
+                    <input id="starstosave" name="starstosave" type="hidden" />
+                    <button type="submit" class="btn btn-secondary" id="save-evaluation">
+                        <i class="far fa-save fa-2x save-icon" id="save-icon"></i>
+
+                    </button>
+                </form>
+                <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
+                    <button type="submit" class="btn btn-secondary" id="delete-evaluation">
+                        <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
+
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

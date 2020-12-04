@@ -23,7 +23,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    @*<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function () {
             $("#box-batiment").hide();
@@ -93,7 +93,7 @@
                 $('#delete-evaluation').removeClass('btn-danger').addClass('btn-secondary');
             });
         }
-    </script>
+    </script>*@
 
     <header class="masthead">
         <div class="card card-outline-secondary">
@@ -103,54 +103,55 @@
             <div class="card-body">
                 <div class="row">
                     <section class=' rating-widget'>
-                        <div class='rating-stars'>
-                            <ul id='stars'>
-                                <li class='star' title='Décevant' data-value='1'>
-                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
-                                </li>
-                                <li class='star' title='Moyen' data-value='2'>
-                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
-                                </li>
-                                <li class='star' title='Sympa mais sans plus...' data-value='3'>
-                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
-                                </li>
-                                <li class='star' title='Très intéressant, à voir !' data-value='4'>
-                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
-                                </li>
-                                <li class='star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
-                                    <i class='fa ratingStar fas fa-star fa-3x'></i>
-                                </li>
+                        @Html.Partial("_StarsEvaluation")
+                        @*<div class='rating-stars'>
+                <ul id='stars'>
+                <li class='star' title='Décevant' data-value='1'>
+                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                </li>
+                <li class='star' title='Moyen' data-value='2'>
+                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                </li>
+                <li class='star' title='Sympa mais sans plus...' data-value='3'>
+                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                </li>
+                <li class='star' title='Très intéressant, à voir !' data-value='4'>
+                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                </li>
+                <li class='star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                    <i class='fa ratingStar fas fa-star fa-3x'></i>
+                </li>
 
-                            </ul>
-                        </div>
-                        <div class="success-box-container">
-                            <div class='success-box' id="box-batiment">
-                                <div class='clearfix'></div>
+            </ul>
+        </div>
+        <div class="success-box-container">
+            <div class='success-box' id="box-batiment">
+                <div class='clearfix'></div>
 
-                                <div class='text-message'></div>
-                                <div class='clearfix'></div>
-                                <div class="save-box">
-                                    <div id="save-rating-batiment">
-                                        <form asp-action="SaveEvaluation" asp-for="BatimentId" class="ratingform">
-                                            <input name="id" type="hidden" value="@Model.BatimentId"/>
-                                            <input id="starstosave" name="starstosave" type="hidden" />
-                                            <button type="submit" class="btn btn-secondary" id="save-evaluation">
-                                                <i class="far fa-save fa-2x save-icon" id="save-icon"></i>
-                                                
-                                            </button>
-                                        </form>
-                                        <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
-                                            <button type="submit" class="btn btn-secondary" id="delete-evaluation">
-                                                <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
-                                                
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class='text-message'></div>
+                <div class='clearfix'></div>
+                <div class="save-box">
+                    <div id="save-rating-batiment">
+                        <form asp-action="SaveEvaluation" asp-for="BatimentId" class="ratingform">
+                            <input name="id" type="hidden" value="@Model.BatimentId"/>
+                            <input id="starstosave" name="starstosave" type="hidden" />
+                            <button type="submit" class="btn btn-secondary" id="save-evaluation">
+                                <i class="far fa-save fa-2x save-icon" id="save-icon"></i>
 
-                </section>
+                            </button>
+                        </form>
+                        <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
+                            <button type="submit" class="btn btn-secondary" id="delete-evaluation">
+                                <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
+
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+                    </section>
             </div>
                 <div class="row">
                     <div class="col-md-6">
