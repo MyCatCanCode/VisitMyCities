@@ -6,7 +6,7 @@
             $('#stars li').on('mouseover', function () {
                 var onStar = parseInt($(this).data('value'), 10); // The star currently selected
                 var stars = $(this).parent().children('li.star');
-
+                console.log(stars);
                 // Now highlight all the stars that's not after the current hovered star
                 for (i = 0; i < stars.length; i++) {
                     $(stars[i]).removeClass('rating');
@@ -71,21 +71,22 @@
 </script>
 
 <div class='rating-stars'>
+    <h2>Evaluer ce lieu :   </h2>
     <ul id='stars'>
         <li class='star' title='Décevant' data-value='1'>
-            <i class='fa ratingStar fas fa-star fa-3x'></i>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
         </li>
         <li class='star' title='Moyen' data-value='2'>
-            <i class='fa ratingStar fas fa-star fa-3x'></i>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
         </li>
         <li class='star' title='Sympa mais sans plus...' data-value='3'>
-            <i class='fa ratingStar fas fa-star fa-3x'></i>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
         </li>
         <li class='star' title='Très intéressant, à voir !' data-value='4'>
-            <i class='fa ratingStar fas fa-star fa-3x'></i>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
         </li>
         <li class='star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
-            <i class='fa ratingStar fas fa-star fa-3x'></i>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
         </li>
 
     </ul>

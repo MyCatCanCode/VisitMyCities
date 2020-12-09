@@ -52,12 +52,19 @@
                 $('.dataTables_length').addClass('bs-select');
             });
 
-            $(".ratingStar").hover(function () {
-                $(".ratingStar").addClass("far").removeClass("fas");
+            var stars = $("ul#average-stars > li");
+            var averageStars = document.getElementById('PassingToJavaScript1').value;
+            //console.log(averageStars);
+            var totalStarsDot = averageStars.replace(/\,/g, '.');
+            var totalStars = parseFloat(totalStarsDot);
+            //console.log(totalStars);
+            var fullStars = Math.floor(totalStars);
+            //console.log(fullStars);
 
-                $(this).addClass("fas").removeClass("far");
-                $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
-            });
+            for (i = 0; i < fullStars; i++) {
+                $(stars[i]).addClass('selected');
+
+            }
         </script>
         
         <section class="page-section" id="services">
@@ -82,7 +89,7 @@
                             @Html.DisplayNameFor(model => model.NumDepartement)
                         </th>
                         <th>
-                            Avis
+                            Moyenne
                         </th>
                         <th>
                             
@@ -90,33 +97,69 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomVille)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomRegion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomDepartement)
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <span class="text-warning">
-                                    <i class="ratingStar fas fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
-                        </td>
-                    </tr>
+                        int sumOfRatings = 0;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomVille)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomRegion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomDepartement)
+                            </td>
+                            <td>
+                                @if (item.VillesEvaluees != null)
+                                {
+                                    @foreach (var r in item.VillesEvaluees)
+                                    {
+                                        sumOfRatings += r.NombreEtoiles;
+                                    }
+                                    double averageRating = item.VillesEvaluees.Count > 0
+                                        ? (double)sumOfRatings / item.VillesEvaluees.Count
+                                        : 0;
+
+                                    <div>                                      
+                                        @averageRating                                        
+                                        <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        Pas de note
+                                        <input type="hidden" id="PassingToJavaScript1" value="0">
+                                    </div>
+                                }
+                                
+                                <div class='rating-stars'>
+                                    <ul id='average-stars'>
+                                        <li class='average-star' title='Décevant' data-value='1'>
+                                            <i class='fa ratingStar fas fa-star'></i>
+                                        </li>
+                                        <li class='average-star' title='Moyen' data-value='2'>
+                                            <i class='fa ratingStar fas fa-star'></i>
+                                        </li>
+                                        <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
+                                            <i class='fa ratingStar fas fa-star'></i>
+                                        </li>
+                                        <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
+                                            <i class='fa ratingStar fas fa-star'></i>
+                                        </li>
+                                        <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                                            <i class='fa ratingStar fas fa-star'></i>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
+                            </td>
+                        </tr>
                     }
 
                 </tbody>

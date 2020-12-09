@@ -1,0 +1,60 @@
+﻿<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var stars = $("ul#average-stars > li");
+        console.log(stars);
+        var totalStars = '@ViewData["MoyenneEtoiles"]';
+        console.log(totalStars);
+        var totalStarsDot = totalStars.replace(/\,/g, '.');
+        var totalStars = parseFloat(totalStarsDot);
+        var fullStars = Math.floor(totalStars);
+
+        //$(".ratingStarHalf").hide();
+
+
+        for (i = 0; i < fullStars; i++) {
+
+            $(stars[i]).addClass('selected');
+
+        }
+
+        $("#averageScore").html(totalStars);
+       
+
+
+        //if ((totalStars - fullStars) > 0)
+        //{
+        //    //$(stars[4]).toggleClass('ratingStar').toggleClass('ratingStarHalf');
+        //    //$("#star-icon-5").show();
+        //    $(this).find('ul#average-stars > li > i').toggleClass('fa-star fa-star-half-alt');
+        //}
+
+        //<i class="fas fa-star-half"></i>
+    });
+</script>
+
+<div class='rating-stars'>
+    <h3 style="margin-right: 20px;">Moyenne des évaluations :   </h3>
+    <ul id='average-stars'>
+        <li class='average-star' title='Décevant' data-value='1'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='average-star' title='Moyen' data-value='2'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+            @*<i class="fa ratingStarHalf fas fa-star-half-alt fa-2x" id="star-icon-5"></i>*@          
+        </li>
+    </ul>
+    <div id="rating-values" style="margin-left:20px;">
+        <span id="averageScore"></span>
+        <span id="nbvotes"></span>
+    </div>
+</div>

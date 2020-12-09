@@ -1,0 +1,35 @@
+﻿<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var stars = $("ul#user-stars > li");
+        console.log(stars);
+        var totalStars = '@ViewData["Etoiles"]';
+
+            for (i = 0; i < totalStars; i++) {
+                $(stars[i]).addClass('selected');
+
+            }
+    });
+</script>
+
+<div class='rating-stars'>
+    <h2>Votre évaluations pour ce lieu :   </h2>
+    <ul id='user-stars'>
+        <li class='user-star' title='Décevant' data-value='1'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='user-star' title='Moyen' data-value='2'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='user-star' title='Sympa mais sans plus...' data-value='3'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='user-star' title='Très intéressant, à voir !' data-value='4'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+        <li class='user-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+            <i class='fa ratingStar fas fa-star fa-2x'></i>
+        </li>
+
+    </ul>
+</div>

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
 using Microsoft.AspNetCore.Identity;
+using VisitMyCities.Models;
 
 namespace VisitMyCities.Controllers
 {
@@ -29,7 +30,10 @@ namespace VisitMyCities.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var visitMyCitiesContext = _context.Batiments.Include(b => b.Ville);
+            var visitMyCitiesContext = _context.Batiments
+                .Include(b => b.Ville).Include(ub => ub.BatimentsEvalues) ;
+
+
             return View(await visitMyCitiesContext.ToListAsync());
         }
 
@@ -41,6 +45,32 @@ namespace VisitMyCities.Controllers
             {
                 return NotFound();
             }
+            var currentUser = _userManager.GetUserId(User);
+
+            // Récupérer l'évaluation de l'utilisateur pour ce bâtiment s'il est connecté.
+            if (currentUser != null)
+            {
+                var stars = _context.UtilisateurBatiment
+                    .Where(ub => ub.Utilisateur.Id.Equals(currentUser))
+                    .Where(ub => ub.Batiment.BatimentId.Equals(id))
+                    .Select(ub => ub.NombreEtoiles)
+                    .ToList()
+                    .FirstOrDefault();
+
+                ViewData["Utilisateur"] = currentUser;
+                ViewData["Etoiles"] = stars;
+            }
+
+            // Calculer la moyenne des évaluations pour ce bâtiment
+
+           
+                var moyenneEvaluations = _context.UtilisateurBatiment
+                    .Where(ub => ub.Batiment.BatimentId.Equals(id))
+                    .DefaultIfEmpty()
+                    .Average(r => r == null ? 0 : r.NombreEtoiles);
+
+            ViewData["MoyenneEtoiles"] = moyenneEvaluations;
+            
 
             var batiment = await _context.Batiments
                 .Include(b => b.Ville)
@@ -188,7 +218,7 @@ namespace VisitMyCities.Controllers
             await _context.UtilisateurBatiment.AddAsync(ub);
             await _context.SaveChangesAsync();
 
-
+           
         }
 
         //[HttpPost]

@@ -13,7 +13,7 @@ Tâches effectuées du 16/11/20 au 27/11/20 :
 - Pouvoir filtrer des bâtiments.
 
 En cours :
-- Faire profil
+- Faire fiche de profil
 - Mettre en place un système d'évaluations
 
 
@@ -56,3 +56,71 @@ https://stackoverflow.com/questions/60604161/how-open-popup-dialog-windows-and-s
 
 03/12/20 :
 Révisions en Allemand + Passation tests d'admission
+--------------------------------------------------------------
+
+04/12/20 :
+Prise d'informations et de notes concernant la demande d'un site d'e-commerce de la part de Florence Cochon, compagne de Patrick Pfrimmer, qui souhaite créer une activité de vente de salades.
+Traiteur à dominante végétale (usage raisonné du lactose, du sucre, du gluten).
+https://www.noel-colmar.com/fr/presentation/les-exposants/item/florence-cochon-hopla
+
+VisitMyCities :
+Transfert de la partie Evaluation dans une vue partielle.
+Création d'une relation many to many entre les tables Ville et Utilisateur et migration.
+Problème rencontré : nécessité de créer une balise Input différente dans la vue partielle selon le type du modèle (Batiment ou Ville) pour le passage des paramètres au Controller correspondant. Solution : utiliser un @if avec un is dans la vue pour déterminer le type de modèle auquel on a affaire.
+
+https://stackoverflow.com/questions/16980601/get-model-type-in-mvc-view
+
+Objectif : -si l'évaluation est déjà faite, afficher les étoiles selon le score, sinon elles sont en gris avec un bouton "évaluer" (autre vue partielle ?)
+- si on appuie sur "évaluer", affichage de la vue partielle permettant l'évaluation.
+
+Elaboration requête pour récupérer le nombre d'étoiles.
+https://dev.to/_patrickgod/many-to-many-relationship-with-entity-framework-core-4059
+
+Si la personne n'est pas connectée, afficher évaluation globale, si personne n'a évalué, étoiles en gris.
+-> Voir requête qui permet de faire la moyenne.
+--------------------------------------------------------------------
+
+05/12/20 :
+Site de Florence Cochon : on attend encore aujourd'hui pour voir si elle revient vers nous, sinon il faudra la contacter demain.
+
+Temps consacré aux candidatures : 1 heure.
+
+VisitMyCities :
+Requête Linq permettant de calculer une moyenne :
+https://stackoverflow.com/questions/4590704/get-average-using-linq
+
+Affichage de la moyenne des évaluations sur la page de détail d'un batiment si l'untilisateur n'est pas connecté.
+Problème : comment arrondir la moyenne des évaluations par rapport aux nombre d'étoiles allumées ? (possibilité de demi-étoiles ? de quart d'étoiles ?)
+
+Problème de compatibilité des formats de nombres entre C# et JS, comment changer la virgule en point :
+https://flaviocopes.com/how-to-comma-dot-javascript/
+
+Sélecteurs jQuery pour sélectionner les éléments <li> :
+https://api.jquery.com/child-selector/
+-------------------------------------------------------------------
+
+08/12/20 :
+
+Problème rencontré : la méthode Average de Linq lance une exception si la séquence initiale ne contient pas d'éléments.
+http://geekswithblogs.net/SoftwareDoneRight/archive/2011/02/15/fixing-linq-error-sequence-contains-no-elements.aspx
+Solution : 
+var moyenneEvaluations = _context.UtilisateurBatiment
+                    .Where(ub => ub.Batiment.BatimentId.Equals(id))
+                    .DefaultIfEmpty()
+                    .Average(r => r == null ? 0 : r.NombreEtoiles);
+					
+Pour récupérer la valeur mise dans ViewData et utiliser sa valeur, il faut faire un cast :
+@if ((double)@ViewData["MoyenneEtoiles"] > 0)
+                        {
+                            @Html.Partial("_ShowAverageEvaluation")
+                        }
+						
+Impossible d'utiliser la fonction ICollection.Average dans une vue. Faire une vue-modèle qui contient déjà la moyenne calculée ?
+----------------------------------------------------------------
+
+09/12/20 :
+Réponse positive pour la prestation mobiité transfrontalière, début vendredi matin.
+Problème : passer une valeur de Razor vers Javascript :
+<input type="hidden" id="PassingToJavaScript1" value=@p1>
+puis, en JS :
+var p1 = document.getElementById('PassingToJavaScript1').value;

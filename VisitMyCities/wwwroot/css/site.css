@@ -10759,15 +10759,15 @@ header.masthead {
     -webkit-user-select: none;
 }
 
-.rating-stars ul > li.star {
-    display: inline-block;
-}
+    .rating-stars ul > li.star, .rating-stars ul > li.average-star, .rating-stars ul > li.user-star {
+        display: inline-block;
+    }
 
 /* Idle State of the stars */
-.rating-stars ul > li.star {
-    /*font-size: 2.5em;*/ /* Change the size of the stars */
-    color: #ccc; /* Color on idle state */
-}
+    .rating-stars ul > li.star, .rating-stars ul > li.average-star, .rating-stars ul > li.user-star {
+        /*font-size: 2.5em;*/ /* Change the size of the stars */
+        color: #ccc; /* Color on idle state */
+    }
 
 /* Hover state of the stars */
 .rating-stars ul > li.star:hover {
@@ -10779,9 +10779,9 @@ header.masthead {
     }
 
 /* Selected state of the stars */
-.rating-stars ul > li.star.selected {
-    color: #FF912C;
-}
+        .rating-stars ul > li.star.selected, .rating-stars ul > li.average-star.selected, .rating-stars ul > li.user-star.selected {
+            color: #FF912C;
+        }
 
 /* Evaluation box*/
 .success-box {
@@ -10807,4 +10807,8 @@ header.masthead {
 
 .ratingform {
     display: inline-block;
+}
+
+.rating-stars {
+    display :flex;
 }

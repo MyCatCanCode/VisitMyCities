@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace VisitMyCities.Controllers
     public class VillesController : Controller
     {
         private readonly VisitMyCitiesContext _context;
+        private readonly UserManager<Utilisateur> _userManager;
 
-        public VillesController(VisitMyCitiesContext context)
+        public VillesController(VisitMyCitiesContext context, UserManager<Utilisateur> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Villes
@@ -36,6 +39,32 @@ namespace VisitMyCities.Controllers
             {
                 return NotFound();
             }
+
+            var currentUser = _userManager.GetUserId(User);
+
+            // Récupérer l'évaluation de l'utilisateur pour cette ville s'il est connecté.
+            if (currentUser != null)
+            {
+                var stars = _context.UtilisateurVille
+                    .Where(uv => uv.Utilisateur.Id.Equals(currentUser))
+                    .Where(uv => uv.Ville.VilleId.Equals(id))
+                    .Select(ub => ub.NombreEtoiles)
+                    .ToList()
+                    .FirstOrDefault();
+
+                ViewData["Utilisateur"] = currentUser;
+                ViewData["Etoiles"] = stars;
+            }
+
+            // Calculer la moyenne des évaluations pour cette ville
+
+
+            var moyenneEvaluations = _context.UtilisateurVille
+                .Where(uv => uv.Ville.VilleId.Equals(id))
+                .DefaultIfEmpty()
+                .Average(r => r == null ? 0 : r.NombreEtoiles);
+
+            ViewData["MoyenneEtoiles"] = moyenneEvaluations;
 
             var ville = await _context.Villes
                 .FirstOrDefaultAsync(m => m.VilleId == id);
@@ -153,5 +182,31 @@ namespace VisitMyCities.Controllers
         {
             return _context.Villes.Any(e => e.VilleId == id);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task SaveEvaluation(int id, int starstosave)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+
+            UtilisateurVille uv = new UtilisateurVille
+            {
+                VilleId = id,
+                UtilisateurId = currentUserId,
+                NombreEtoiles = starstosave
+            };
+
+            await _context.UtilisateurVille.AddAsync(uv);
+            await _context.SaveChangesAsync();
+
+
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteEvaluation(int? id)
+        //{
+
+        //}
     }
 }

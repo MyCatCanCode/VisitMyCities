@@ -32,7 +32,8 @@
     <header class="masthead">
     </header>
     <br /><br />
-    <script type="text/javascript">
+          <script type="text/javascript">
+           
         $(document).ready(function ($) {
             $('#tablelist').DataTable({
                 "paging": false,
@@ -43,15 +44,31 @@
                 "scrollY": 800, "scrollX": 1300
             });
             $('.dataTables_length').addClass('bs-select');
+
+            var stars = $("ul#average-stars > li");
+            var averageStars = document.getElementById('PassingToJavaScript1').value;
+            //console.log(averageStars);
+            var totalStarsDot = averageStars.replace(/\,/g, '.');
+            var totalStars = parseFloat(totalStarsDot);
+            //console.log(totalStars);
+            var fullStars = Math.floor(totalStars);
+            //console.log(fullStars);
+
+            for (i = 0; i < fullStars; i++) {
+                $(stars[i]).addClass('selected');
+
+            }
+
+            $(".ratingStar").hover(function () {
+                //$(".ratingStar").addClass("far").removeClass("fas");
+
+                //$(this).addClass("fas").removeClass("far");
+                //$(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+            });
         });
 
-        $(".ratingStar").hover(function () {
-            $(".ratingStar").addClass("far").removeClass("fas");
-
-            $(this).addClass("fas").removeClass("far");
-            $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
-        });
-    </script>
+        
+          </script>
    
         <section class="page-section" id="services">
             <div class="container">
@@ -78,16 +95,18 @@
                             @Html.DisplayNameFor(model => model.Ville)
                         </th>
                         <th>
-                            Avis
+                            
+                            Moyenne
                         </th>
                         <th></th>
                     </tr>
                 </thead>
 
 
-                <tbody>
+                <tbody>       
                     @foreach (var item in Model)
                     {
+                        int sumOfRatings = 0;
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.NomBatiment)
@@ -102,14 +121,47 @@
                             @Html.DisplayFor(modelItem => item.Ville.NomVille)
                         </td>
                         <td>
-                            <div class="form-group">
-                                <span class="text-warning">
-                                    <i class="ratingStar fas fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                    <i class="ratingStar far fa-star"></i>
-                                </span>
+                            @if (item.BatimentsEvalues != null)
+                            {
+
+                                @foreach (var r in item.BatimentsEvalues)
+                                {
+                                    sumOfRatings += r.NombreEtoiles;
+                                }
+                                double averageRating = item.BatimentsEvalues.Count > 0
+                                ? (double)sumOfRatings / item.BatimentsEvalues.Count
+                                : 0;
+                                <div>
+                                    @averageRating
+                                    <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    Pas de note
+                                    <input type="hidden" id="PassingToJavaScript1" value="0">
+                                </div>
+                            }
+                            <div class='rating-stars'>
+                                <ul id='average-stars'>
+                                    <li class='average-star' title='Décevant' data-value='1'>
+                                        <i class='fa ratingStar fas fa-star'></i>
+                                    </li>
+                                    <li class='average-star' title='Moyen' data-value='2'>
+                                        <i class='fa ratingStar fas fa-star'></i>
+                                    </li>
+                                    <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
+                                        <i class='fa ratingStar fas fa-star'></i>
+                                    </li>
+                                    <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
+                                        <i class='fa ratingStar fas fa-star'></i>
+                                    </li>
+                                    <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                                        <i class='fa ratingStar fas fa-star'></i>
+                                    </li>
+
+                                </ul>
                             </div>
                         </td>
                         <td>
@@ -120,6 +172,7 @@
 
                     </tr>
                     }
+                    
                 </tbody>
             </table>
         </section>
