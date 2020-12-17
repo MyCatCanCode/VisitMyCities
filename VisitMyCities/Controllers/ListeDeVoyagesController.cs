@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,12 @@ namespace VisitMyCities.Controllers
     public class ListeDeVoyagesController : Controller
     {
         private readonly VisitMyCitiesContext _context;
+        private readonly UserManager<Utilisateur> _userManager;
 
-        public ListeDeVoyagesController(VisitMyCitiesContext context)
+        public ListeDeVoyagesController(VisitMyCitiesContext context, UserManager<Utilisateur> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: ListeDeVoyages
@@ -64,6 +67,7 @@ namespace VisitMyCities.Controllers
         public IActionResult Create()
         {
             ViewData["VilleId"] = new SelectList(_context.Villes, "VilleId", "NomVille");
+            ViewData["UtilisateurId"] = _userManager.GetUserAsync(User).Result.Id;
             return View();
         }
 
@@ -72,7 +76,7 @@ namespace VisitMyCities.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdListe,TitreListe,VilleId,URLBlason")] ListeDeVoyage listeDeVoyage)
+        public async Task<IActionResult> Create([Bind("IdListe,TitreListe,VilleId,URLBlason,UtilisateurId")] ListeDeVoyage listeDeVoyage)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +85,7 @@ namespace VisitMyCities.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["VilleId"] = new SelectList(_context.Villes, "VilleId", "NomVille", listeDeVoyage.VilleId);
+            
             return View(listeDeVoyage);
         }
 

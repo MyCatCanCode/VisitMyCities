@@ -124,3 +124,4 @@ Problème : passer une valeur de Razor vers Javascript :
 <input type="hidden" id="PassingToJavaScript1" value=@p1>
 puis, en JS :
 var p1 = document.getElementById('PassingToJavaScript1').value;
+Moyenne des évaluations dans l'index et le détail des villes et des bâtiments terminés.

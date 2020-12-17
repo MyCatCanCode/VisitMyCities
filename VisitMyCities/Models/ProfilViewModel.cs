@@ -9,5 +9,7 @@ namespace VisitMyCities.Models
     public class ProfilViewModel
     {
         public Utilisateur Utilisateur { get; set; }
+        
+
     }
 }

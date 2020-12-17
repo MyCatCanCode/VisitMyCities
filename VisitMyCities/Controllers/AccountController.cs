@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
 
@@ -14,12 +15,15 @@ namespace VisitMyCities.Controllers
     {
         private readonly UserManager<Utilisateur> userManager;
         private readonly SignInManager<Utilisateur> loginManager;
+        private readonly VisitMyCitiesContext _context;
+
 
         // Initialisation de l’état via des injections de dépendance.
-        public AccountController(VisitMyCitiesContext dc, UserManager<Utilisateur> userManager, SignInManager<Utilisateur> loginManager)
+        public AccountController(VisitMyCitiesContext dc, UserManager<Utilisateur> userManager, SignInManager<Utilisateur> loginManager, VisitMyCitiesContext context)
         {
             this.userManager = userManager;
             this.loginManager = loginManager;
+            _context = context;
         }
 
         // Permet d’accéder aux fonctionnalités de l’application. Tous les utilisateurs (authentifiés et anonymes) peuvent y accéder.
@@ -79,7 +83,14 @@ namespace VisitMyCities.Controllers
         [HttpGet]
         public IActionResult Profil()
         {
-            return this.View();
+            var currentUser = userManager.GetUserAsync(User).Result;
+            var listesDeVoyage = _context.ListesDeVoyage
+                .Include ( u => u.Utilisateur)
+                .Include(v => v.Ville)
+                .Where(u => u.Utilisateur.Id == currentUser.Id).ToList();
+            
+
+            return this.View(currentUser);
         }
 
         // Permet à un utilisateur de s’authentifier.
