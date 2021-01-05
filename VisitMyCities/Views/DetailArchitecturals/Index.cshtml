@@ -26,11 +26,11 @@
     <header class="masthead">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0">Trop beau l'architecture !!!</h3>
+                <h3 class="mb-0">Les détails à ne pas rater !</h3>
             </div>
             <div class="card-body">
                 <p>
-                    <a asp-action="Create">Ajouter un détail à cette architecture</a>
+                    <a asp-action="Create">Ajouter un détail intéressant</a>
                 </p>
                 <table class="table">
                     <thead>
@@ -61,9 +61,9 @@
                                     @Html.DisplayFor(modelItem => item.Batiment.NomBatiment)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.DetailId">Edit</a> |
+                                    <a asp-action="Edit" asp-route-id="@item.DetailId">Modifier</a> |
                                     <a asp-action="Details" asp-route-id="@item.DetailId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.DetailId">Delete</a>
+                                    <a asp-action="Delete" asp-route-id="@item.DetailId">Supprimer</a>
                                 </td>
                             </tr>
                         }

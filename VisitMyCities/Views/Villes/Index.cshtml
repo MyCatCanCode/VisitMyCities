@@ -157,7 +157,9 @@
                                 </div>
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.VilleId">Informations</a>
+                                <a asp-action="Edit" asp-route-id="@item.VilleId">Editer</a> |
+                                <a asp-action="Details" asp-route-id="@item.VilleId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.VilleId">Supprimer</a>                              
                             </td>
                         </tr>
                     }

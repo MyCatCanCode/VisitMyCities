@@ -26,34 +26,34 @@
     <header class="masthead">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0">êtes-vous sur de vouloir le supprimer ?</h3>
+                <h3 class="mb-0">Supprimer ce détail ?</h3>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <dt class="col-sm-2">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.NomDetail)
                     </dt>
-                    <dd class="col-sm-10">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.NomDetail)
                     </dd>
-                    <dt class="col-sm-2">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.DescriptionDetail)
                     </dt>
-                    <dd class="col-sm-10">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.DescriptionDetail)
                     </dd>
-                    <dt class="col-sm-2">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Batiment)
                     </dt>
-                    <dd class="col-sm-10">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Batiment.NomBatiment)
                     </dd>
                     </dl>
 
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="DetailId" />
-                        <input type="submit" value="Delete" class="btn btn-danger" /> |
-                        <a asp-action="Index">Back to List</a>
+                        <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+                        <a asp-action="Index">Retour</a>
                     </form>
                 </div>
             </div>
