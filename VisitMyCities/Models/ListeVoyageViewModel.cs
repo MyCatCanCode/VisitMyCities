@@ -9,6 +9,7 @@ namespace VisitMyCities.Models
     public class ListeVoyageViewModel
     {
         public ListeDeVoyage ListeDeVoyage { get; set; }
+        public Ville Ville { get; set; }
         public ICollection<Batiment> Batiments { get; set; }
     }
 }

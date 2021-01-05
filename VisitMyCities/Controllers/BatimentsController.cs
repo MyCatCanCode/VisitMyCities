@@ -80,7 +80,17 @@ namespace VisitMyCities.Controllers
                 return NotFound();
             }
 
-            return View(batiment);
+            // Récupération des détails architecturaux 
+            var detailsArchi = _context.DetailsArchi
+                .Where(b => b.BatimentId.Equals(id)).ToList();
+
+            var batimentViewModel = new BatimentViewModel
+            {
+                Batiment = batiment,
+                Details = detailsArchi
+            };
+
+            return View(batimentViewModel);
         }
 
         // GET: Batiments/Create

@@ -169,6 +169,23 @@ namespace VisitMyCities.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> AddBatiment(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var listeDeVoyage = await _context.ListesDeVoyage
+                .FirstOrDefaultAsync(m => m.IdListe == id);
+            if (listeDeVoyage == null)
+            {
+                return NotFound();
+            }
+
+            return View(listeDeVoyage);
+        }
+
         private bool ListeDeVoyageExists(int id)
         {
             return _context.ListesDeVoyage.Any(e => e.IdListe == id);

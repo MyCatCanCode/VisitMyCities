@@ -1,0 +1,53 @@
+﻿@model VisitMyCities.Models.BatimentViewModel
+
+
+
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Détails à voir absolument !</h3>
+        </div>
+        <div class="card-body">
+            <p>
+                <a asp-action="Create">Ajouter un détail à ce bâtiment</a>
+            </p>@if (Model.Details.Count == 0)
+            {
+                <div style="width:300px; text-align:center; border: 1px grey solid;">Pas de détail remarquable répertorié pour ce bâtiment.</div>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Description
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Details)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomDetail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DescriptionDetail)
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.DetailId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.DetailId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.DetailId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            </div>
+    </div>
