@@ -10692,17 +10692,21 @@ header.masthead {
         header.masthead h1 {
             font-size: 3rem;
         }
+
+    #mainNav.accountLink {
+        color: gold;
+    }
 }
 
 @media (min-width: 1200px) {
     header.masthead h1 {
         font-size: 3.5rem;
     }
+
+    #mainNav.accountLink {
+        color: gold;
+    }
 }
-
-
-
-
 
 
 
@@ -10811,4 +10815,8 @@ header.masthead {
 
 .rating-stars {
     display :flex;
+}
+
+#mainNav.accountLink {
+    color: gold;
 }

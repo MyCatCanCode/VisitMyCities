@@ -31,7 +31,30 @@
             <div class="card-body">
                 <div class="row">
                     <section class=' rating-widget'>
-                        @Html.Partial("_StarsEvaluation")
+                        @if ((double)@ViewData["MoyenneEtoiles"] > 0)
+                        {
+                            @Html.Partial("_ShowAverageEvaluation")
+                        }
+                        else
+                        {
+                            <h3>Pas d'évaluation pour ce lieu</h3>
+                        }
+                    </section>
+                </div>
+                <div class="row">
+                    <section class='rating-widget'>
+                        @if (@ViewData["Utilisateur"] != null)
+                        {
+                            if ((int)@ViewData["Etoiles"] == 0)
+                            {
+                                @Html.Partial("_StarsEvaluation")
+                            }
+                            else
+                            {
+                                @Html.Partial("_ShowUserEvaluation")
+                            }
+                        }
+
                     </section>
                 </div>
                 <div class="row">
@@ -40,29 +63,29 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.NomRegion)
                         </dt>
-                        <dd >
+                        <dd>
                             @Html.DisplayFor(model => model.NomRegion)
                         </dd>
                         <br />
                         <dt>
                             @Html.DisplayNameFor(model => model.NumDepartement)
                         </dt>
-                        <dd >
+                        <dd>
                             @Html.DisplayFor(model => model.NumDepartement)
                         </dd>
                         <br />
                         <dt>
                             @Html.DisplayNameFor(model => model.NomDepartement)
                         </dt>
-                        <dd >
+                        <dd>
                             @Html.DisplayFor(model => model.NomDepartement)
                         </dd>
-                       
+
                     </div>
                     <div class="col-md-5" id="blason">
-                        <img src="~/@Html.DisplayFor(model => model.Blason)" style="width:250px"/>
+                        <img src="~/@Html.DisplayFor(model => model.Blason)" style="width:250px" />
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-footer">

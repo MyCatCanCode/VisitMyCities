@@ -214,7 +214,7 @@ namespace VisitMyCities.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task SaveEvaluation(int id, int starstosave)
+        public async Task<IActionResult> SaveEvaluation(int id, int starstosave)
         {
             var currentUserId = _userManager.GetUserId(User);
 
@@ -228,7 +228,7 @@ namespace VisitMyCities.Controllers
             await _context.UtilisateurBatiment.AddAsync(ub);
             await _context.SaveChangesAsync();
 
-           
+            return RedirectToAction(nameof(Index));
         }
 
         //[HttpPost]

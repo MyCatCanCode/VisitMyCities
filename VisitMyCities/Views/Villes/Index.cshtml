@@ -122,8 +122,8 @@
                                         ? (double)sumOfRatings / item.VillesEvaluees.Count
                                         : 0;
 
-                                    <div>                                      
-                                        @averageRating                                        
+                                    <div>
+                                        @averageRating / 5
                                         <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
                                     </div>
                                 }
@@ -134,8 +134,8 @@
                                         <input type="hidden" id="PassingToJavaScript1" value="0">
                                     </div>
                                 }
-                                
-                                <div class='rating-stars'>
+
+                                <!--<div class='rating-stars'>
                                     <ul id='average-stars'>
                                         <li class='average-star' title='Décevant' data-value='1'>
                                             <i class='fa ratingStar fas fa-star'></i>
@@ -154,7 +154,7 @@
                                         </li>
 
                                     </ul>
-                                </div>
+                                </div>-->
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.VilleId">Editer</a> |

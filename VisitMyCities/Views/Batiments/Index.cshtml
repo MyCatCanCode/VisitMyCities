@@ -47,12 +47,12 @@
 
             var stars = $("ul#average-stars > li");
             var averageStars = document.getElementById('PassingToJavaScript1').value;
-            //console.log(averageStars);
+            console.log(averageStars);
             var totalStarsDot = averageStars.replace(/\,/g, '.');
             var totalStars = parseFloat(totalStarsDot);
-            //console.log(totalStars);
+            console.log(totalStars);
             var fullStars = Math.floor(totalStars);
-            //console.log(fullStars);
+            console.log(fullStars);
 
             for (i = 0; i < fullStars; i++) {
                 $(stars[i]).addClass('selected');
@@ -132,7 +132,7 @@
                                 ? (double)sumOfRatings / item.BatimentsEvalues.Count
                                 : 0;
                                 <div>
-                                    @averageRating
+                                    @averageRating / 5
                                     <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
                                 </div>
                             }
@@ -143,7 +143,7 @@
                                     <input type="hidden" id="PassingToJavaScript1" value="0">
                                 </div>
                             }
-                            <div class='rating-stars'>
+                            <!--<div class='rating-stars'>
                                 <ul id='average-stars'>
                                     <li class='average-star' title='Décevant' data-value='1'>
                                         <i class='fa ratingStar fas fa-star'></i>
@@ -162,7 +162,7 @@
                                     </li>
 
                                 </ul>
-                            </div>
+                            </div>-->
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.BatimentId">Editer</a> |

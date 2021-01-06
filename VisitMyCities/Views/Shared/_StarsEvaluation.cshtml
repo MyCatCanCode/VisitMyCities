@@ -100,28 +100,28 @@
         <div class="save-box">
             <div id="save-rating-batiment">
                 <form asp-action="SaveEvaluation" asp-for="BatimentId" class="ratingform">
-                    @if (Model is VisitMyCities.DataModel.BusinessObjects.Batiment)
+                    @if (Model is VisitMyCities.Models.BatimentViewModel)
                     {
-                        <input name="id" type="hidden" value="@Model.BatimentId" />
+                        <input name="id" type="hidden" value="@Model.Batiment.BatimentId" />
                     }
                     else if (Model is VisitMyCities.DataModel.BusinessObjects.Ville)
                     {
                         <input name="id" type="hidden" value="@Model.VilleId" />
                     }
-                    
+
                     <input id="starstosave" name="starstosave" type="hidden" />
                     <button type="submit" class="btn btn-secondary" id="save-evaluation">
                         <i class="far fa-save fa-2x save-icon" id="save-icon"></i>
 
                     </button>
                 </form>
-                <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
-                    <button type="submit" class="btn btn-secondary" id="delete-evaluation">
-                        <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
+                    <form asp-action="DeleteEvaluation" asp-for="BatimentId" class="ratingform">
+                        <button type="submit" class="btn btn-secondary" id="delete-evaluation">
+                            <i class="fas fa-trash-alt fa-2x" id="save-icon"></i>
 
-                    </button>
-                </form>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>

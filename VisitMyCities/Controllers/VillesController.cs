@@ -28,7 +28,10 @@ namespace VisitMyCities.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Villes.ToListAsync());
+            var visitMyCitiesContext = _context.Villes
+                .Include(uv => uv.VillesEvaluees);
+
+            return View(await visitMyCitiesContext.ToListAsync());
         }
 
         // GET: Villes/Details/5
@@ -185,7 +188,7 @@ namespace VisitMyCities.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task SaveEvaluation(int id, int starstosave)
+        public async Task<IActionResult> SaveEvaluation(int id, int starstosave)
         {
             var currentUserId = _userManager.GetUserId(User);
 
@@ -199,7 +202,7 @@ namespace VisitMyCities.Controllers
             await _context.UtilisateurVille.AddAsync(uv);
             await _context.SaveChangesAsync();
 
-
+            return RedirectToAction(nameof(Index));
         }
 
         //[HttpPost]
