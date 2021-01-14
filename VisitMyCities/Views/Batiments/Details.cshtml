@@ -79,8 +79,27 @@
                         <dt>
                             Monument historique ?
                         </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Batiment.MonumentHistorique)
+                        <dd id="monHisto">
+
+                            @if (Model.Batiment.MonumentHistorique.HasValue)
+                            {
+                                @if (Model.Batiment.MonumentHistorique.Value)
+                                {                                 
+                                    <p>Oui</p>
+                                }
+                                else if (!Model.Batiment.MonumentHistorique.Value)
+                                       {                             
+                                            <p>Non</p>
+                                       }
+                            }
+                            else if (!Model.Batiment.MonumentHistorique.HasValue)
+                            {
+                                <p>Non renseigné</p>
+                            }
+                            else
+                            {
+                                <p>Problème</p>
+                            }
                         </dd>
                         <br />
                         <dt>

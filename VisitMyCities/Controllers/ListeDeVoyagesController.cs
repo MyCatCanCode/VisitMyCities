@@ -51,12 +51,14 @@ namespace VisitMyCities.Controllers
                 from liste in _context.ListesDeVoyage
                 join batlist in _context.BatimentsListesDeVoyage on liste.IdListe equals batlist.IdListe
                 join batiment in _context.Batiments on batlist.BatimentId equals batiment.BatimentId
+                
                 where liste.IdListe == id
                 select new Batiment { 
                     BatimentId = batiment.BatimentId,
                     NomBatiment = batiment.NomBatiment,
                     Adresse = batiment.Adresse,
-                    URLPhoto = batiment.URLPhoto
+                    URLPhoto = batiment.URLPhoto,
+                    
                 };
 
             listeDetails.Batiments = batiments.ToList();
@@ -169,21 +171,54 @@ namespace VisitMyCities.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> AddBatiment(int? id)
+        public async Task<IActionResult> AddBatiment(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var listeDetails = new ListeVoyageViewModel();
+            var batiments = 
+                from batiment in _context.Batiments
+                //join ville in _context.Batiments on batiment.VilleId equals ville.VilleId
+                join batlist in _context.BatimentsListesDeVoyage on batiment.BatimentId equals batlist.BatimentId into gj
+                from subbat in gj.DefaultIfEmpty()
+                where subbat.IdListe != id
+                select new Batiment
+                {
+                    BatimentId = batiment.BatimentId,
+                    NomBatiment = batiment.NomBatiment,
+                    Adresse = batiment.Adresse,
+                    URLPhoto = batiment.URLPhoto,
+                    //Ville = ville.Ville
+                };
 
-            var listeDeVoyage = await _context.ListesDeVoyage
+            listeDetails.Batiments = batiments.ToList();
+
+            listeDetails.ListeDeVoyage = await _context.ListesDeVoyage
                 .FirstOrDefaultAsync(m => m.IdListe == id);
-            if (listeDeVoyage == null)
+
+            if (listeDetails.ListeDeVoyage == null)
             {
                 return NotFound();
             }
 
-            return View(listeDeVoyage);
+
+
+            return View(listeDetails);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveBatiment(int id, int listeId)
+        {
+
+            BatimentListeDeVoyage bl = new BatimentListeDeVoyage
+            {
+                BatimentId = id,
+                IdListe = listeId
+            };
+
+            await _context.BatimentsListesDeVoyage.AddAsync(bl);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details));
         }
 
         private bool ListeDeVoyageExists(int id)
