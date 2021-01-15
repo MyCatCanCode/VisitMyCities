@@ -28,13 +28,26 @@ namespace VisitMyCities.Controllers
 
         // GET: Batiments
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var visitMyCitiesContext = _context.Batiments
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var batiments = _context.Batiments
                 .Include(b => b.Ville).Include(ub => ub.BatimentsEvalues) ;
 
+            int pageSize = 6;
+            return View(await PaginatedList<Batiment>.CreateAsync(batiments.AsNoTracking(), pageNumber ?? 1, pageSize));
 
-            return View(await visitMyCitiesContext.ToListAsync());
+            //return View(await visitMyCitiesContext.ToListAsync());
         }
 
         [AllowAnonymous]

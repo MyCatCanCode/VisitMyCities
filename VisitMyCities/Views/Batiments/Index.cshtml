@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Batiment>
+﻿@model PaginatedList<VisitMyCities.DataModel.BusinessObjects.Batiment>
 
 @{
     ViewData["Title"] = "";
@@ -70,112 +70,139 @@
         
           </script>
    
-        <section class="page-section" id="services">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <a asp-action="Create">Bâtiments à découvrir</a>
+          <section class="page-section" id="services">
+              <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-lg-8 text-center">
+                          <a asp-action="Create">Bâtiments à découvrir</a>
 
-                    </div>
-                </div>
-            </div>
-            <table id="tablelist" class="table table-hover dataTable table-responsive">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NomBatiment)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TypeBatiment)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DateConstruction)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Ville)
-                        </th>
-                        <th>
-                            
-                            Moyenne
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
+                      </div>
+                  </div>
+              </div>
+              <table class="tablelist table table-hover dataTable table-responsive">
+                  <thead>
+                      <tr>
+                          <th>
+                              @*@Html.DisplayNameFor(model => model.NomBatiment)*@
+                              Nom Bâtiment
+                          </th>
+                          <th>
+                              @*@Html.DisplayNameFor(model => model.TypeBatiment)*@
+                              Type
+                          </th>
+                          <th>
+                              @*@Html.DisplayNameFor(model => model.DateConstruction)*@
+                              Date Construction
+                          </th>
+                          <th>
+                              @*@Html.DisplayNameFor(model => model.Ville)*@
+                              Ville
+                          </th>
+                          <th>
+
+                              Moyenne
+                          </th>
+                          <th></th>
+                      </tr>
+                  </thead>
 
 
-                <tbody>       
-                    @foreach (var item in Model)
-                    {
-                        int sumOfRatings = 0;
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NomBatiment)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TypeBatiment)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateConstruction)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Ville.NomVille)
-                        </td>
-                        <td>
-                            @if (item.BatimentsEvalues != null)
-                            {
+                  <tbody>
+                      @foreach (var item in Model)
+                      {
+                          int sumOfRatings = 0;
+                          <tr>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.NomBatiment)
+                              </td>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.TypeBatiment)
+                              </td>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.DateConstruction)
+                              </td>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.Ville.NomVille)
+                              </td>
+                              <td>
+                                  @if (item.BatimentsEvalues != null)
+                                  {
 
-                                @foreach (var r in item.BatimentsEvalues)
-                                {
-                                    sumOfRatings += r.NombreEtoiles;
-                                }
-                                double averageRating = item.BatimentsEvalues.Count > 0
-                                ? (double)sumOfRatings / item.BatimentsEvalues.Count
-                                : 0;
-                                <div>
-                                    @averageRating / 5
-                                    <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
-                                </div>
-                            }
-                            else
-                            {
-                                <div>
-                                    Pas de note
-                                    <input type="hidden" id="PassingToJavaScript1" value="0">
-                                </div>
-                            }
-                            <!--<div class='rating-stars'>
-                                <ul id='average-stars'>
-                                    <li class='average-star' title='Décevant' data-value='1'>
-                                        <i class='fa ratingStar fas fa-star'></i>
-                                    </li>
-                                    <li class='average-star' title='Moyen' data-value='2'>
-                                        <i class='fa ratingStar fas fa-star'></i>
-                                    </li>
-                                    <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
-                                        <i class='fa ratingStar fas fa-star'></i>
-                                    </li>
-                                    <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
-                                        <i class='fa ratingStar fas fa-star'></i>
-                                    </li>
-                                    <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
-                                        <i class='fa ratingStar fas fa-star'></i>
-                                    </li>
+                                      @foreach (var r in item.BatimentsEvalues)
+                                      {
+                                          sumOfRatings += r.NombreEtoiles;
+                                      }
+                                      double averageRating = item.BatimentsEvalues.Count > 0
+                                      ? (double)sumOfRatings / item.BatimentsEvalues.Count
+                                      : 0;
+                                      <div>
+                                          @averageRating / 5
+                                          <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
+                                      </div>
+                                  }
+                                  else
+                                  {
+                                      <div>
+                                          Pas de note
+                                          <input type="hidden" id="PassingToJavaScript1" value="0">
+                                      </div>
+                                  }
+                                  <!--<div class='rating-stars'>
+                            <ul id='average-stars'>
+                                <li class='average-star' title='Décevant' data-value='1'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Moyen' data-value='2'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
 
-                                </ul>
-                            </div>-->
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.BatimentId">Editer</a> |
-                            <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.BatimentId">Supprimer</a>
-                        </td>
+                            </ul>
+                        </div>-->
+                              </td>
+                              <td>
+                                  <a asp-action="Edit" asp-route-id="@item.BatimentId">Editer</a> |
+                                  <a asp-action="Details" asp-route-id="@item.BatimentId">Details</a> |
+                                  <a asp-action="Delete" asp-route-id="@item.BatimentId">Supprimer</a>
+                              </td>
 
-                    </tr>
-                    }
-                    
-                </tbody>
-            </table>
-        </section>
+                          </tr>
+                      }
+
+                  </tbody>
+              </table>
+              
+              
+
+              @{
+                  var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                  var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+              }
+
+              <a asp-action="Index"
+                 asp-route-sortOrder="@ViewData["CurrentSort"]"
+                 asp-route-pageNumber="@(Model.PageIndex - 1)"
+                 asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                 class="btn btn-default @prevDisabled">
+                  Précédent
+              </a>
+              <a asp-action="Index"
+                 asp-route-sortOrder="@ViewData["CurrentSort"]"
+                 asp-route-pageNumber="@(Model.PageIndex + 1)"
+                 asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                 class="btn btn-default @nextDisabled">
+                  Suivant
+              </a>
+              
+          </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
