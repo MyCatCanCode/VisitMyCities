@@ -26,26 +26,26 @@
 <body>
     <div>
     <h1 style="margin-top:100px">Connexion</h1>
-    <form action="/Account/Login" method="post" >
-        <div>
-        <table>
-            <tr>
-                <td>Nom d'utilisateur</td>
-                <td><input type="text" name="username" /></td>
-            </tr>
-            <tr>
-                <td>Mot de passe</td>
-                <td><input type="password" name="password" /></td>
-            </tr>
-            <tr>
-                <td>Se souvenir de moi</td>
-                <td><input type="checkbox" name="rememberme" /></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Login" /></td>
-            </tr>
+    <form action="/Account/Login" method="post">
+        <div style="margin-top:15px">
+            <table class="tableLogin">             
+                <tr>
+                    <td>Nom d'utilisateur</td>
+                    <td><input type="text" name="username" /></td>
+                </tr>      
+        <tr>
+            <td>Mot de passe</td>
+            <td><input type="password" name="password" /></td>
+        </tr>
+        <tr>
+            <td>Se souvenir de moi</td>
+            <td><input type="checkbox" name="rememberme" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Login" /></td>
+        </tr>
         </table>
-            </div>
+</div>
     </form>
     </div>
     <!-- Bootstrap core JS-->

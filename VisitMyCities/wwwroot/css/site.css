@@ -10824,3 +10824,8 @@ header.masthead {
 .tablelist {
     height: 550px;
 }
+
+.tableLogin {
+    border-collapse: separate;
+    border-spacing: 20px;
+}
