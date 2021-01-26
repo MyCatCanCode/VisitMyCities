@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Ville>
+﻿@model PaginatedList<VisitMyCities.DataModel.BusinessObjects.Ville>
 
 @{
     ViewData["Title"] = "Index";
@@ -39,7 +39,7 @@
         <header class="masthead">
         </header>
         <br /><br />
-        <script type="text/javascript">
+        @*<script type="text/javascript">
             $(document).ready(function ($) {
                 $('#tablelist').DataTable({
                     "paging": false,
@@ -65,7 +65,7 @@
                 $(stars[i]).addClass('selected');
 
             }
-        </script>
+        </script>*@
         
         <section class="page-section" id="services">
             <div class="container">
@@ -75,29 +75,32 @@
                     </div>
                 </div>
             </div>
-            <table id="tablelist" class="table table-hover dataTable table-responsive">
+            <table class="table table-hover dataTable table-responsive">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.NomVille)
+                            @*@Html.DisplayNameFor(model => model.NomVille)*@
+                            Nom Ville
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.NomRegion)
+                            @*@Html.DisplayNameFor(model => model.NomRegion)*@
+                            Région
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(model => model.NumDepartement)
+                            @*@Html.DisplayNameFor(model => model.NumDepartement)*@
+                            Département
                         </th>
                         <th>
                             Moyenne
                         </th>
                         <th>
-                            
+
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     @foreach (var item in Model)
                     {
                         int sumOfRatings = 0;
@@ -124,7 +127,7 @@
 
                                     <div>
                                         @averageRating / 5
-                                        <input type="hidden" id="PassingToJavaScript1" value="@averageRating">
+                                        @*<input type="hidden" id="PassingToJavaScript1" value="@averageRating">*@
                                     </div>
                                 }
                                 else
@@ -136,36 +139,55 @@
                                 }
 
                                 <!--<div class='rating-stars'>
-                                    <ul id='average-stars'>
-                                        <li class='average-star' title='Décevant' data-value='1'>
-                                            <i class='fa ratingStar fas fa-star'></i>
-                                        </li>
-                                        <li class='average-star' title='Moyen' data-value='2'>
-                                            <i class='fa ratingStar fas fa-star'></i>
-                                        </li>
-                                        <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
-                                            <i class='fa ratingStar fas fa-star'></i>
-                                        </li>
-                                        <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
-                                            <i class='fa ratingStar fas fa-star'></i>
-                                        </li>
-                                        <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
-                                            <i class='fa ratingStar fas fa-star'></i>
-                                        </li>
+                            <ul id='average-stars'>
+                                <li class='average-star' title='Décevant' data-value='1'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Moyen' data-value='2'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Sympa mais sans plus...' data-value='3'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Très intéressant, à voir !' data-value='4'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
+                                <li class='average-star' title='Exceptionnel, à voir absolument !!!' data-value='5'>
+                                    <i class='fa ratingStar fas fa-star'></i>
+                                </li>
 
-                                    </ul>
-                                </div>-->
+                            </ul>
+                        </div>-->
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.VilleId">Editer</a> |
                                 <a asp-action="Details" asp-route-id="@item.VilleId">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.VilleId">Supprimer</a>                              
+                                <a asp-action="Delete" asp-route-id="@item.VilleId">Supprimer</a>
                             </td>
                         </tr>
                     }
 
                 </tbody>
             </table>
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @prevDisabled">
+                Précédent
+            </a>
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @nextDisabled">
+                Suivant
+            </a>
         </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -38,7 +38,11 @@
                                 <input asp-for="TitreListe" class="form-control" />
                                 <span asp-validation-for="TitreListe" class="text-danger"></span>
                             </div>
-
+                            <div class="form-group">
+                                <label class="control-label">Description</label>
+                                <input asp-for="DescriptionListe" class="form-control" />
+                                <span asp-validation-for="DescriptionListe" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Ville</label>
                                 <select asp-for="VilleId" class="form-control" asp-items="ViewBag.VilleId"></select>
@@ -49,7 +53,7 @@
                                 <span asp-validation-for="URLBlason" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" asp-for="UtilisateurId" class="form-control" value="@ViewBag.UtilisateurId"/>
+                                <input type="hidden" asp-for="UtilisateurId" class="form-control" value="@ViewBag.UtilisateurId" />
                             </div>
 
                             <div class="form-group">

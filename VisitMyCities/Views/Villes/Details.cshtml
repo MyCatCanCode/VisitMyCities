@@ -23,7 +23,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="masthead" style="padding-bottom: 0;">
+    <header class="photoVille" style="padding-bottom: 0;background-image: url('../assets/img/strasbourg_home_bato.jpg')">
         <div class="card card-outline-secondary">
             <div class="card-header">
                 <h1 class="mb-0">@Html.DisplayFor(model => model.NomVille)</h1>
@@ -61,6 +61,22 @@
                     <div class="col-md-7">
                         <br />
                         <dt>
+                            @Html.DisplayNameFor(model => model.DescriptionVille)
+                        </dt>
+                        @if (Model.DescriptionVille == null)
+                        {
+                            <dd>
+                                Pas de description pour le moment.
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.DescriptionVille)
+                            </dd>
+                        }
+                        <br />
+                        <dt>
                             @Html.DisplayNameFor(model => model.NomRegion)
                         </dt>
                         <dd>
@@ -70,6 +86,7 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.NumDepartement)
                         </dt>
+
                         <dd>
                             @Html.DisplayFor(model => model.NumDepartement)
                         </dd>
@@ -94,7 +111,7 @@
                     <a asp-action="Index">Retour à la liste</a>
                 </div>
             </div>
-         </div>   
+        </div>
     </header>
 </body>
 

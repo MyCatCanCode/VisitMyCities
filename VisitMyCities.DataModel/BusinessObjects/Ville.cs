@@ -16,6 +16,8 @@ namespace VisitMyCities.DataModel.BusinessObjects
         [Display(Name = "Description")]
         public string DescriptionVille { get; set; }
 
+        public string URLPhoto { get; set; }
+
         [Display(Name = "Région")]
         public string NomRegion { get; set; }
 

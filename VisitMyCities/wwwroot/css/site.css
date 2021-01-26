@@ -2033,7 +2033,7 @@ pre {
 }
 
 .table-responsive {
-    display: block;
+    /*display: block;*/
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -10664,6 +10664,17 @@ header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 4.5rem);
     background: url("../assets/img/strasbourg_home_bato.jpg");
+    background-position: center;
+    margin-top: 100px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    /*background-size: cover;*/
+}
+
+header.photoVille {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    
     background-position: center;
     margin-top: 100px;
     background-repeat: no-repeat;

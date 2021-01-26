@@ -26,12 +26,25 @@ namespace VisitMyCities.Controllers
 
         // GET: Villes
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var visitMyCitiesContext = _context.Villes
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var villes = _context.Villes
                 .Include(uv => uv.VillesEvaluees);
 
-            return View(await visitMyCitiesContext.ToListAsync());
+            int pageSize = 8;
+
+            return View(await PaginatedList<Ville>.CreateAsync(villes.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Villes/Details/5
