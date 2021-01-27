@@ -23,10 +23,14 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="photoVille" style="padding-bottom: 0;background-image: url('../assets/img/strasbourg_home_bato.jpg')">
+    @{string photoURL = String.Concat("../../",@Model.URLPhoto);}
+    <header class="photoVille" style="padding-bottom: 0;background-image: url(@photoURL)">
+       
+        @*<header class="photoVille" style="padding-bottom: 0;background-image: url('../../assets/img/villes/colmar_petite_venise.jpg')">*@
         <div class="card card-outline-secondary">
             <div class="card-header">
                 <h1 class="mb-0">@Html.DisplayFor(model => model.NomVille)</h1>
+
             </div>
             <div class="card-body">
                 <div class="row">

@@ -10672,10 +10672,10 @@ header.masthead {
 }
 
 header.photoVille {
-    padding-top: 10rem;
+    padding-top: 20rem;
     padding-bottom: calc(10rem - 4.5rem);
-    
-    background-position: center;
+    background-origin: border-box;
+    background-position: top;
     margin-top: 100px;
     background-repeat: no-repeat;
     background-attachment: scroll;
