@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
 
@@ -24,8 +25,9 @@ namespace VisitMyCities.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var visitMyCitiesContext = _context.Batiments.Include(b => b.Ville);
-            return View(await visitMyCitiesContext.ToListAsync());
+            var batiments = _context.Batiments;
+            ViewData["Villes"] = _context.Villes.Select(v => v.NomVille).ToList();
+            return View(await batiments.ToListAsync());
         }
 
         // GET: Map/Details/5

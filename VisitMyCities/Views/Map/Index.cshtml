@@ -1,4 +1,9 @@
-﻿<head>
+﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Batiment>
+
+@{
+    ViewData["Title"] = "";
+}
+<head>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,7 +25,7 @@
 
     <title>Pulse animation with bubble layer - Azure Maps Web SDK Samples</title>
 
-    <meta charset="utf-8" />
+   
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- MapBox API -->
@@ -29,8 +34,15 @@
 
 </head>
 <body>
-    <div id='map' style='width: 800px; height: 600px;margin-top:300px;'></div>
+    <div id='map' style='width: 800px; height: 1000px;margin-top:300px;'></div>
+    <div id='villesMap' style='width: 300px; height: 300px;margin-top:10px;'>
+        @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in ViewData["Villes"].ToList())
+        {
+            @ViewData["Villes"]
+        }
+        </div>
     <script>
+        /*Affichage de la carte avec les bâtiments*/ 
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaW5hcGhpbGlwcGUiLCJhIjoiY2trZjluN3YyMGc0OTJ2bjcwNm1zZnhqeSJ9.wLd0vA_gP4_0J16z7A_uyw';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -39,10 +51,23 @@
         // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
         //jumpTo(7, 48);
-        map.setZoom(7);
+        map.setZoom(10);
         map.setCenter([7, 48]);
+
+        var batimentArray = [];
+
+        var json = @Html.Raw(Json.Serialize(@Model.ToList()));
+        console.log(json.length);
+
+        console.log(json[1].longitude);
+        console.log(json[1].latitude);
+
+        for (i = 0; i < json.length; i++) {
         var marker = new mapboxgl.Marker()
-            .setLngLat([7.7521113, 48.5734053])
+                .setLngLat([json[i].longitude, json[i].latitude])
             .addTo(map);
+        }
+
+
     </script>
 </body>
