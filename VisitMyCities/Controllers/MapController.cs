@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
+using VisitMyCities.Models;
 
 namespace VisitMyCities.Controllers
 {
@@ -25,9 +26,14 @@ namespace VisitMyCities.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var batiments = _context.Batiments;
-            ViewData["Villes"] = _context.Villes.Select(v => v.NomVille).ToList();
-            return View(await batiments.ToListAsync());
+            var batiments = _context.Batiments.ToList();
+            var villes = _context.Villes.ToList();
+            var mapViewModel = new MapViewModel
+            {
+                Batiments = batiments,
+                Villes = villes
+            };
+            return View(mapViewModel);
         }
 
         // GET: Map/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Batiment>
+﻿@model VisitMyCities.Models.MapViewModel
 
 @{
     ViewData["Title"] = "";
@@ -36,10 +36,15 @@
 <body>
     <div id='map' style='width: 800px; height: 1000px;margin-top:300px;'></div>
     <div id='villesMap' style='width: 300px; height: 300px;margin-top:10px;'>
-        @foreach (VisitMyCities.DataModel.BusinessObjects.Batiment item in ViewData["Villes"].ToList())
+        @foreach (VisitMyCities.DataModel.BusinessObjects.Ville item in Model.Villes)
         {
-            @ViewData["Villes"]
+            <script>
+            var el = document.createElement('div');
+                el.idName = 'marker';
+            </script>
+            @String.Concat(item.NomVille,"  ");
         }
+        
         </div>
     <script>
         /*Affichage de la carte avec les bâtiments*/ 
@@ -56,7 +61,7 @@
 
         var batimentArray = [];
 
-        var json = @Html.Raw(Json.Serialize(@Model.ToList()));
+        var json = @Html.Raw(Json.Serialize(@Model.Batiments));
         console.log(json.length);
 
         console.log(json[1].longitude);
