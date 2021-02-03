@@ -30,6 +30,9 @@ namespace VisitMyCities.DataModel.BusinessObjects
 
         [Display(Name = "Maire")]
         public string NomMaire { get; set; }
+
+        public double LongitudeVille { get; set; }
+        public double LatitudeVille { get; set; }
         // Propriété de navigation
         public ICollection<Batiment> Batiments { get; set; }
 

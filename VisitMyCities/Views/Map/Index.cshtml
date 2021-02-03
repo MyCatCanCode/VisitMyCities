@@ -34,20 +34,38 @@
 
 </head>
 <body>
-    <div id='map' style='width: 800px; height: 1000px;margin-top:300px;'></div>
-    <div id='villesMap' style='width: 300px; height: 300px;margin-top:10px;'>
-        @foreach (VisitMyCities.DataModel.BusinessObjects.Ville item in Model.Villes)
-        {
-            <script>
-            var el = document.createElement('div');
-                el.idName = 'marker';
-            </script>
-            @String.Concat(item.NomVille,"  ");
-        }
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/site.js"></script>
+    <div class="row">
         
+        <div class="col col-sm-3" id='villesMap' style='width: 300px;margin-top: 120px;'>
+            <h3 style="padding-left:10px;">Zoomer sur...</h3>
+            <ul style="list-style-type: none;">
+                @foreach (VisitMyCities.DataModel.BusinessObjects.Ville item in Model.Villes)
+                {
+
+                    <li>
+                        <br />
+                        <button type="button" id="@item.NomVille" class="boutonVille btn-info" style='width: 150px;'>@item.NomVille</button>
+                        <br />
+                    </li>
+                }
+            </ul>
+
+
+
         </div>
+        <div class="col col-sm-6" id='map' style='width: 800px; height: 1000px;margin-top:100px;'></div>
+    </div>
     <script>
-        /*Affichage de la carte avec les bâtiments*/ 
+        /*Affichage de la carte avec les bâtiments*/
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaW5hcGhpbGlwcGUiLCJhIjoiY2trZjluN3YyMGc0OTJ2bjcwNm1zZnhqeSJ9.wLd0vA_gP4_0J16z7A_uyw';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -56,23 +74,57 @@
         // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
         //jumpTo(7, 48);
-        map.setZoom(10);
+        map.setZoom(8);
         map.setCenter([7, 48]);
 
         var batimentArray = [];
 
         var json = @Html.Raw(Json.Serialize(@Model.Batiments));
         console.log(json.length);
-
+        var jsonVilles = @Html.Raw(Json.Serialize(@Model.Villes));
+        console.log(jsonVilles);
         console.log(json[1].longitude);
         console.log(json[1].latitude);
 
+        function onClick() {
+            alert('Click !!!');
+        };
+
         for (i = 0; i < json.length; i++) {
-        var marker = new mapboxgl.Marker()
-                .setLngLat([json[i].longitude, json[i].latitude])
-            .addTo(map);
+            //var el = document.createElement('div');
+            //el.style.width = '30px';
+            //el.style.height = '50px';
+            //el.idName = json[i].nomBatiment;
+            var marker =
+                new mapboxgl.Marker({
+                    draggable: true
+                })
+                    .setLngLat([json[i].longitude, json[i].latitude])
+                    .setPopup(new mapboxgl.Popup({ className: 'popup'}).setHTML("<h1>" + json[i].nomBatiment + "</h1>")) // add popup
+                    .addTo(map);
+            marker.on('dragstart', onClick);
         }
 
+        /*Ajustement du zoom selon la ville choisie*/
+        $(document).ready(function () {
+            $("#Colmar").click(function () {
+                map.setZoom(12);
+                map.setCenter([jsonVilles[0].longitudeVille, jsonVilles[0].latitudeVille]);
+            });
+            $("#Strasbourg").click(function () {
+                map.setZoom(12);
+                map.setCenter([jsonVilles[1].longitudeVille, jsonVilles[1].latitudeVille]);
+            });
+            $("#Mulhouse").click(function () {
+                map.setZoom(12);
+                map.setCenter([jsonVilles[2].longitudeVille, jsonVilles[2].latitudeVille]);
+            });
+            $("#Obernai").click(function () {
+                map.setZoom(12);
+                map.setCenter([jsonVilles[3].longitudeVille, jsonVilles[3].latitudeVille]);
+            });
+        });
 
     </script>
+    
 </body>
