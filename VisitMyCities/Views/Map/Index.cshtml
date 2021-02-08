@@ -44,7 +44,7 @@
     <!-- Core theme JS-->
     <script src="~/js/site.js"></script>
     <div class="row">
-        
+
         <div class="col col-sm-3" id='villesMap' style='width: 300px;margin-top: 120px;'>
             <h3 style="padding-left:10px;">Zoomer sur...</h3>
             <ul style="list-style-type: none;">
@@ -63,6 +63,7 @@
 
         </div>
         <div class="col col-sm-6" id='map' style='width: 800px; height: 1000px;margin-top:100px;'></div>
+        <div class="col col-sm-3" id='infoBatiment' style='width: 300px; height: 1000px;margin-top:120px;'></div>
     </div>
     <script>
         /*Affichage de la carte avec les bâtiments*/
@@ -95,16 +96,37 @@
             //el.style.width = '30px';
             //el.style.height = '50px';
             //el.idName = json[i].nomBatiment;
+            var toto = json;
+            //var batiment = json[i].nomBatiment;
             var marker =
                 new mapboxgl.Marker({
                     draggable: true
                 })
                     .setLngLat([json[i].longitude, json[i].latitude])
-                    .setPopup(new mapboxgl.Popup({ className: 'popup'}).setHTML("<h1>" + json[i].nomBatiment + "</h1>")) // add popup
+                    .setPopup(new mapboxgl.Popup({ className: 'popup' }).setHTML('<h1>' + json[i].nomBatiment + '</h1><button id='+json[i].batimentId+' class="infoVille btn-info" onclick = "hello(toto, this.id)">Informations</button>')) // add popup
                     .addTo(map);
-            marker.on('dragstart', onClick);
+            //marker.on('dragstart', onClick);
         }
 
+        function hello(json, id) {
+            console.log(json);
+            console.log(id);
+            $(document).ready(function () {
+                //$("div.demo-container").html(function () {
+                //    var emphasis = "<em>" + $("p").length + " paragraphs!</em>";
+                //    return "<p>All new content for " + emphasis + "</p>";
+                //});
+                $("#infoBatiment").html(function () {
+                    //for (i = 0; i < json.length; i++) { }
+                    var url = json[id - 1].urlPhoto;
+
+                    return "<img src="+url+" style='width:280px;margin-left: auto;margin-right: auto;'/>" +
+                        "<span style='text-align: center'><h1>" + json[id - 1].nomBatiment + "</h1><P>" + json[id - 1].descriptionBatiment + "</P></span>";
+                        
+                });
+            });
+        }
+        
         /*Ajustement du zoom selon la ville choisie*/
         $(document).ready(function () {
             $("#Colmar").click(function () {
@@ -122,6 +144,11 @@
             $("#Obernai").click(function () {
                 map.setZoom(12);
                 map.setCenter([jsonVilles[3].longitudeVille, jsonVilles[3].latitudeVille]);
+            });
+
+        /* Click sur le bouton Informations */
+            $("#infoColmar").click(function () {
+                $("#infoBatiment").html("<span class='red'><b>@Model.Batiments.First().NomBatiment</b></span>");
             });
         });
 
