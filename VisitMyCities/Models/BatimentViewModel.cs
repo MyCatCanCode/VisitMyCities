@@ -10,5 +10,6 @@ namespace VisitMyCities.Models
     {
         public Batiment Batiment { get; set; }
         public ICollection<DetailArchitectural> Details { get; set; }
+        public ICollection<Categorie> Categories { get; set; }
     }
 }

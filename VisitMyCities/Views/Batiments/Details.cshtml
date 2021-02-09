@@ -62,6 +62,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <br />
+                        @Html.Partial("_TagsBatiment")
                         <dt>
                             Type :
                         </dt>
@@ -84,13 +85,13 @@
                             @if (Model.Batiment.MonumentHistorique.HasValue)
                             {
                                 @if (Model.Batiment.MonumentHistorique.Value)
-                                {                                 
+                                {
                                     <p>Oui</p>
                                 }
                                 else if (!Model.Batiment.MonumentHistorique.Value)
-                                       {                             
-                                            <p>Non</p>
-                                       }
+                                {
+                                    <p>Non</p>
+                                }
                             }
                             else if (!Model.Batiment.MonumentHistorique.HasValue)
                             {

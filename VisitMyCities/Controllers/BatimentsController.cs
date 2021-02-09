@@ -97,10 +97,23 @@ namespace VisitMyCities.Controllers
             var detailsArchi = _context.DetailsArchi
                 .Where(b => b.BatimentId.Equals(id)).ToList();
 
+            var categories =
+                from categorie in _context.Categories
+                join batcat in _context.BatimentsCategories on categorie.CategorieId equals batcat.CategorieId
+                join bat in _context.Batiments on batcat.BatimentId equals bat.BatimentId
+
+                where bat.BatimentId == id
+                select new Categorie
+                {
+                    CategorieId = categorie.CategorieId,
+                    NomCategorie = categorie.NomCategorie,
+                };
+
             var batimentViewModel = new BatimentViewModel
             {
                 Batiment = batiment,
-                Details = detailsArchi
+                Details = detailsArchi,
+                Categories = categories.ToList()
             };
 
             return View(batimentViewModel);

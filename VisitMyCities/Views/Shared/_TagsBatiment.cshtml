@@ -1,0 +1,20 @@
+﻿<div>
+  
+    @foreach (var item in Model.Categories)
+    {
+        <button class="btn btn-success">
+            @item.NomCategorie
+        </button>
+        @*<td>
+                <a asp-action="Edit" asp-route-id="@item.CategorieId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CategorieId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CategorieId">Delete</a>
+            </td>*@
+
+    }
+    <p>
+        <a asp-action="Create">Ajouter un Tag</a>
+    </p>
+    <br/><br/>
+</div>
+    
