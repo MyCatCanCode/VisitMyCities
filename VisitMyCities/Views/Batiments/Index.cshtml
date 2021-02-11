@@ -71,6 +71,9 @@
           </script>
    
           <section class="page-section" id="services">
+              <div class="row">
+                    @Html.Partial("_TagCloud")
+              </div>
               <div class="container">
                   <div class="row justify-content-center">
                       <div class="col-lg-8 text-center">
@@ -179,8 +182,8 @@
 
                   </tbody>
               </table>
-              
-              
+
+
 
               @{
                   var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -201,7 +204,7 @@
                  class="btn btn-default @nextDisabled">
                   Suivant
               </a>
-              
+
           </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

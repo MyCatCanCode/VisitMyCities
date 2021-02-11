@@ -10846,30 +10846,60 @@ header.photoVille {
 }
 
 /*Nuage de tags*/
+.tag0 {
+    visibility:hidden;
+    
+}
+
 .tag1 {
-    font-size: 0.8 em
+    font-size: 0.6em;
+    color:khaki;
 }
 
 .tag2 {
-    font-size: 0.9em
+    font-size: 0.7em;
+    color:aquamarine;
 }
 
 .tag3 {
-    font-size: 1em
+    font-size: 0.8em;
+    color:darkkhaki;
 }
 
 .tag4 {
-    font-size: 1.2em
+    font-size: 0.9em;
+    color: darkseagreen;
 }
 
 .tag5 {
-    font-size: 1.4em
+    font-size: 1em;
+    color: yellowgreen;
 }
 
 .tag6 {
-    font-size: 1.7em
+    font-size: 1.2em;
+    color: forestgreen;
 }
 
 .tag7 {
-    font-size: 2.0em
+    font-size: 1.4em;
+    color:yellowgreen;
+}
+
+#tags {
+    font-family: "Merriweather Sans", Arial;
+    font-style: oblique;
+    padding-bottom: 30px;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+}
+
+.tagSpan {
+    margin-right:20px;
+}
+
+.tagSpan a:hover {
+   color:orange;
+   text-decoration-line:none;
 }

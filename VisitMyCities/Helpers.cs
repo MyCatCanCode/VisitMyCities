@@ -10,6 +10,8 @@ namespace VisitMyCities
         public static string GetTagClass(int category, int batiments)
         {
             var result = (category * 100) / batiments;
+            if (result == 0)
+                return "tag0";
             if (result <= 1)
                 return "tag1";
             if (result <= 4)

@@ -1,0 +1,29 @@
+﻿
+<div id="tags">
+    @{
+        var listeCategories = (ICollection<VisitMyCities.DataModel.BusinessObjects.Categorie>)ViewData["ListeCategories"];
+        var listeOccurences = (IEnumerable<VisitMyCities.DataModel.BusinessObjects.BatimentCategorie>)ViewData["ListeOccurences"];
+
+
+     
+        foreach (var item in listeCategories)
+        {
+            var classSpan = VisitMyCities.Helpers.GetTagClass(listeOccurences.Where(o => o.CategorieId == item.CategorieId).Count(), listeOccurences.Count());
+           
+            <span class="@classSpan tagSpan">
+                @Html.RouteLink(
+                             item.NomCategorie,
+                             "default",
+                             new
+                             {
+                                 controller = "Categories",
+                                 action = "Details",
+                                 id = item.CategorieId
+                             },
+                             new { @class = @classSpan }
+                             )
+            </span>
+            
+        }
+    }
+</div>

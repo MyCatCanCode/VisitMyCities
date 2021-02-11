@@ -41,6 +41,24 @@ namespace VisitMyCities.Controllers
                 searchString = currentFilter;
             }
 
+            //var categoriesUniques = _context.BatimentsCategories.Select(bc => new { bc.CategorieId }).Distinct();
+
+            var categoriesUtilisees = (from batcat in _context.BatimentsCategories
+                                      join categories in _context.Categories on batcat.CategorieId equals categories.CategorieId into gj
+                                      from subbat in gj.DefaultIfEmpty()
+                                      //where subbat.CategorieId != id
+
+                                      select new Categorie
+                                      {
+                                          CategorieId = batcat.CategorieId,
+                                          NomCategorie = batcat.Categorie.NomCategorie
+
+                                      }).Distinct();
+
+            ViewData["ListeCategories"] = categoriesUtilisees.ToList();
+            ViewData["ListeOccurences"] = _context.BatimentsCategories.ToList();
+            //ViewData["NombreOccurences"] = _context.BatimentsCategories.Count();
+
             var batiments = _context.Batiments
                 .Include(b => b.Ville).Include(ub => ub.BatimentsEvalues) ;
 
