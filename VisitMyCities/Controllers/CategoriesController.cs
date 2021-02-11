@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitMyCities.DataModel.BusinessObjects;
 using VisitMyCities.DataModel.DataAccessLayer;
+using VisitMyCities.Models;
 
 namespace VisitMyCities.Controllers
 {
@@ -43,7 +44,25 @@ namespace VisitMyCities.Controllers
                 return NotFound();
             }
 
-            return View(categorie);
+            var listeBatiments = from batiments in _context.Batiments
+                                 join batcat in _context.BatimentsCategories on batiments.BatimentId equals batcat.CategorieId
+                                 join categories in _context.Categories on batcat.CategorieId equals categories.CategorieId
+                                 where categories.CategorieId == id
+                                 select new Batiment
+                                 {
+                                     BatimentId = batcat.BatimentId,
+                                     NomBatiment = batcat.Batiment.NomBatiment,
+                                     URLPhoto = batcat.Batiment.URLPhoto
+                                     
+
+                                 };
+            CategorieViewModel cvm = new Models.CategorieViewModel
+            {
+                Batiments = listeBatiments.ToList(),
+                Categorie = categorie
+            };
+
+            return View(cvm);
         }
 
         // GET: Categories/Create

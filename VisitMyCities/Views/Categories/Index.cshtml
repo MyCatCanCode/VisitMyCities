@@ -1,35 +1,81 @@
 ﻿@model IEnumerable<VisitMyCities.DataModel.BusinessObjects.Categorie>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index des catégories";
 }
 
-<h1>Index</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>VisitMyCity</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" rel="stylesheet" type="text/css" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomCategorie)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomCategorie)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategorieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategorieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategorieId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+</head>
+<body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+    <header class="masthead">
+    </header>
+    <script type="text/javascript">
+
+        $(document).ready(function ($) {
+            $('#tablelist').DataTable({
+                "paging": true,
+                "fnInitComplete": function () {
+                    //var myCustomScrollbar = document.querySelector('#tablelist_wrapper .dataTables_scrollBody');
+                    //var ps = new PerfectScrollbar(myCustomScrollbar);
+                },
+                "scrollY": 800, "scrollX": 1300
+            });
+            $('.dataTables_length').addClass('bs-select');
+    </script>
+    <br />
+    <p>
+        <img src="~/assets/img/button-304224_640.png" style="width:50px" />
+        <a asp-action="Create">Ajouter une catégorie</a>
+    </p>
+   
+    <table class="tablelist table table-hover dataTable table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomCategorie)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategorieId">Modifier</a> |
+                        <a asp-action="Details" asp-route-id="@item.CategorieId">Détails</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CategorieId">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

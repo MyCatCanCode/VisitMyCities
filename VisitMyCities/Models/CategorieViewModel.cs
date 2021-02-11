@@ -6,10 +6,10 @@ using VisitMyCities.DataModel.BusinessObjects;
 
 namespace VisitMyCities.Models
 {
-    public class BatimentIndexViewModel
+    public class CategorieViewModel
     {
-        public PaginatedList<Batiment> BatimentsIndex { get; set; }
+        public Categorie Categorie { get; set; }
 
-        public ICollection<Categorie> Categories { get; set; }
+        public ICollection<Batiment> Batiments { get; set; }
     }
 }
