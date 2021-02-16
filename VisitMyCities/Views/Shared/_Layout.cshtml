@@ -22,6 +22,7 @@
                         <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Batiments" asp-action="Index">Batiments</a></li>
                         <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Map" asp-action="Index">Cartes</a></li>
                         <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="ListeDeVoyages" asp-action="Index">Mes listes</a></li>
+                        <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Categories" asp-action="Index">Catégories</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Profil" style="color:gold">Mon profil</a></li>
@@ -29,7 +30,7 @@
                         }
                         else
                         {
-                            <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Login"style="color:gold">Se Connecter</a></li>
+                            <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Login" style="color:gold">Se Connecter</a></li>
                             <li class="nav-item"><a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Register" style="color:gold">Créer un compte</a></li>
                         }
                     </ul>

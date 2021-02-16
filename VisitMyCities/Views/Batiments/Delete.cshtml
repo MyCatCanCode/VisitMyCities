@@ -71,7 +71,25 @@
                         @Html.DisplayNameFor(model => model.MonumentHistorique)
                     </dt>
                     <dd class="col-sm-8">
-                        @Html.DisplayFor(model => model.MonumentHistorique)
+                        @if (Model.MonumentHistorique.HasValue)
+                        {
+                            @if (Model.MonumentHistorique.Value)
+                            {
+                                <p>Oui</p>
+                            }
+                            else if (!Model.MonumentHistorique.Value)
+                            {
+                                <p>Non</p>
+                            }
+                        }
+                        else if (!Model.MonumentHistorique.HasValue)
+                        {
+                            <p>Non renseigné</p>
+                        }
+                        else
+                        {
+                            <p>Problème</p>
+                        }
                     </dd>
                     <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.DateConstruction)

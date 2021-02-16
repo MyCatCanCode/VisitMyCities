@@ -28,8 +28,13 @@
 
     <div>
         <p>
-            <img src="~/assets/img/button-304224_640.png" style="width:50px" />
-            <a asp-action="AddBatiment" asp-route-id="@Model.ListeDeVoyage.IdListe">Ajouter un bâtiment</a>
+            <span>
+                <img src="~/assets/img/button-304224_640.png" style="width:50px" />
+                <a asp-action="AddBatiment" asp-route-id="@Model.ListeDeVoyage.IdListe">Ajouter un bâtiment</a>
+            </span>
+            <span style="padding-left:30px">
+                <a asp-action="Delete" asp-controller="ListeDeVoyages" asp-route-id="@Model.ListeDeVoyage.IdListe">Supprimer cette liste</a>
+            </span>
         </p>
 
         <div class="card-deck" style="margin:20px">
